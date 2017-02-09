@@ -212,7 +212,7 @@ Create a new folder : `app/models/public`
 
 ### Step 3: Creating the first components
 
-lets create the component via the generator :
+Lets create the component via the generator :
 ```ruby
 rails g hyperloop:component Home::Show
 ```
@@ -575,7 +575,7 @@ Sample 3 - In Reactrb (without React Bootstrap):
 
 Sample 4 - In Reactrb (with React Bootstrap):
 
-	Bs.Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
+	ReactBootstrap::Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
 		someMethod
 	end
 
