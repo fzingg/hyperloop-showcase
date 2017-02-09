@@ -165,6 +165,7 @@ Opal.load('components');
 Finally you will need to update your `application.rb` to ensure everything works in production:
 ```ruby
 #config/application.rb
+
 config.eager_load_paths += %W(#{config.root}/app/models/public)
 config.eager_load_paths += %W(#{config.root}/app/views/components)
 config.autoload_paths += %W(#{config.root}/app/models/public)
@@ -403,6 +404,7 @@ console.log('client_only.js loaded');
 
 ```javascript
 // webpack/client_and_server.js
+
 // all other packages that you can run on both server (prerendering) and client go here
 // most well behaved packages can be required here
 console.log('client_and_server.js loaded');
@@ -786,200 +788,178 @@ So far we have a very basic application which is looking OK and showing a video.
 
 
 
-## Using Reactrb Reactive Record
+## Working with HyperMesh (ActiveRecord API part)
 
 [We will be using the Reactive Record gem](https://github.com/reactrb/reactive-record)
 
-Reactive Record compiles your Active Record models so they are accessible to the front-end and implements an API based on your models and their associations. Lazy loads just the data that is needed to render a component and is fully integrated with Reactrb and paired with Synchromesh to push database changes to all connected clients. ReactiveRecord and Synchromesh give you Relay + GraphQL like functionality with a fraction of the effort and complexity (the original idea for Reactive Record is credited to [Volt](https://github.com/voltrb/volt) and not Relay).
+**HyperMesh** compiles your Active Record models so they are accessible to the front-end and implements an API based on your models and their associations. Lazy loads just the data that is needed to render a component and is fully integrated with **HyperReact** and paired with **HyperMesh** to push database changes to all connected clients. **HyperMesh** gives you Relay + GraphQL like functionality with a fraction of the effort and complexity (the original idea for Reactive Record is credited to Volt and not Relay).
 
-### Installing Reactive Record
-
-Installing Reactive Record is straight forward.
-
-First add this line to your application's Gemfile:
-
-```ruby
-gem 'reactive-record'
-```
-
-And then execute:
+### Creating the models
 
 ```
-$ bundle install
-```
-
-Finally you need to add a line to your `routes.rb`:
-
-```ruby
-mount ReactiveRecord::Engine => '/rr'
-```
-
-### Creating the models
-
-We are going to need a few models to work with so let's go ahead and create those now.
-
-```text
-rails g model Post
-rails g model Comment post:references
+rails g model Planevent
 ```
 
 And then before you run the migrations, lets flesh them out a little so they look like this:
-
 ```ruby
-# db/migrate/..create_posts.rb
-class CreatePosts < ActiveRecord::Migration
-  def change
-    create_table :posts do |t|
-      t.string :body
-      t.timestamps null: false
-    end
-  end
-end
+# db/migrate/..create_planevents.rb
 
-# db/migrate/..create_comments.rb
-class CreateComments < ActiveRecord::Migration
+class CreatePlanevents < ActiveRecord::Migration[5.0]
   def change
-    create_table :comments do |t|
-      t.references :post, index: true, foreign_key: true
-      t.string :body
-      t.timestamps null: false
+    create_table :planevents do |t|
+      t.string :planeventtitle
+      t.text :description
+      t.timestamps
     end
   end
 end
 ```
 
-Now would be a good time to run the migrations:
-
-```text
+Now would be a good time to run the migrations :
+```
 rake db:migrate
 ```
 
-### Making your models accessible to Reactive Record
+### Making your models accessible to HyperMesh
 
-Reactive Record needs to 'see' your models as a representation of them get compiled into JavaScript along with your Reactrb components so they are accessible in your client side code.
+**Hypermesh** needs to 'see' your models as a representation of them get compiled into JavaScript along with your **HyperReact** components so they are accessible in your client side code.
+The convention (though this is choice and you can change this if you prefer) is to create a `public` folder under models and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
 
-The convention (though this is choice and you can change this if you prefer) is to create a `public` folder under `models` and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
+Create a new folder : `models/public`
+Then move `planevent.rb` to `models/public`
+(Only for Rails 5.x)  Move `app/models/application_record.rb` to `app/models/public/`
 
-Create a new folder:
-
-```text
-models/public
-```
-
-Then move `post.rb` and `comment.rb` to `models/public`
-
-```text
-$ mv app/models/post.rb app/models/public
-$ mv app/models/comment.rb app/models/public
-```
-
-Next create `_react_public_models.rb` in your models folder:
-
+Next create `_react_public_models.rb` in your `models` folder:
 ```ruby
 # models/_react_public_models.rb
+
 require_tree './public'
 ```
 
-Finally add a line to your `views/components.rb` file:
-
+Finally add a line to your `views/components.rb` file:
 ```ruby
 # views/components.rb
-...
+
 require '_react_public_models'
 ```
 
-### Model Associations
+### Accessing your models in HyperReact components
 
-Reactive Record is particular about both sides of an association being specified. If you forget to do this you will see warnings to this effect.
-
-```ruby
-# models/public/post.rb
-class Post < ActiveRecord::Base
-  has_many :comments
-end
-
-# models/public/comment.rb
-class Comment < ActiveRecord::Base
-  belongs_to :post
-end
-```
-
-### Accessing your models in Reactrb components
-
-To get started, lets create a new component which will display a list of Posts and Comments under the video:
+To get started, lets create a new component which will display a list of Events under the video:
 
 ```ruby
-# views/components/show.rb
-...
+# views/components/home/show.rb
+
 div.container do
   ReactPlayer(url: 'https://www.youtube.com/embed/FzCsDVfPQqk', playing: true)
   br # line break
-  PostsList()
+  PlaneventsList()
 end
-...
 ```
 
-Note that to place a Reactrb component you either need to include ( ) or { }, so `PostsList()` or `PostsList { }` would be valid but just `PostsList` would not.
+Note that to place a **HyperReact** component you either need to include ( ) or { }, so `planeventsList()` or `PlaneventsList { }` would be valid but just `PlaneventsList` would not.
 
-Next lets create the `PostsList` component:
-
+Next lets create the `PlaneventsList` component :
 ```ruby
+#app/views/components/home/planeventslist.rb
+
 module Components
   module Home
-    class PostsList < React::Component::Base
-      define_state :new_post, ""
+    class PlaneventsList < React::Component::Base
+
+      define_state new_planevent: Hash.new { |h, k| h[k] = '' }
 
       before_mount do
         # note that this will lazy load posts
         # and only the fields that are needed will be requested
-        @posts = Post.all
+        @planevents = Planevent.all
+        @planevent_attributes = Hash[ 'planeventtitle' => 'Event Name', 'description' => 'Description']
       end
 
       def render
-        div do
-          new_post
-          ul.list_unstyled do
-            @posts.reverse.each do |post|
-              PostListItem(post: post)
-              CommentsList(comments: post.comments)
+        div.container do
+        	div.row do
+          		new_planevent
+          	end
+
+          	hr
+
+          	div.row do
+          		table_render
+          	end	
+
+        end
+      end
+
+      def table_render 
+      		
+          div.col_md_12 do
+            br 
+            table(class: "table table-hover") do
+              thead do
+                tr do
+                  td.text_muted.small(width: '33%') { "NAME" }
+                  td.text_muted.small(width: '33%') { "DESCRIPTION" }
+                  td.text_muted.small(width: '33%') { "DATE" }
+                end
+              end
+              tbody do
+                @planevents.reverse.each do |planevent|
+                  PlaneventsListItem(planevent: planevent)
+                end
+              end
             end
           end
-        end
+
       end
 
-      def new_post
-        ReactBootstrap::FormGroup() do
-          ReactBootstrap::FormControl(
-            value: state.new_post,
-            type: :text,
-          ).on(:change) { |e|
-            state.new_post! e.target.value
-          }
-        end
+      def new_planevent
+
+      	@planevent_attributes.each do |attribute, value|
+
+	        ReactBootstrap::FormGroup() do
+
+	        	ReactBootstrap::ControlLabel() do
+					value
+				end
+				ReactBootstrap::FormControl(
+					value: state.new_planevent[attribute],
+					type: :text,
+					).on(:change) { |e|
+						state.new_planevent![attribute] = e.target.value
+					}
+	        end
+	     end
+
         ReactBootstrap::Button(bsStyle: :primary) do
-          "Post"
-        end.on(:click) { save_new_post }
+          "Create an new event"
+        end.on(:click) { save_new_planevent }
+      
       end
 
-      def save_new_post
-        post = Post.new(body: state.new_post)
-        post.save do |result|
+      def save_new_planevent
+        
+        Planevent.create(state.new_planevent) do |result|
           # note that save is a promise so this code will only run after the save
           # yet react will move onto the code after this (before the save happens)
           alert "unable to save" unless result == true
         end
-        state.new_post! ""
+        state.new_planevent.clear
+        
       end
     end
 
-    class PostListItem < React::Component::Base
-      param :post
+    class PlaneventsListItem < React::Component::Base
+      param :planevent
 
       def render
-        li do
-          # note how you access post.body just like with Active Record
-          h4 { params.post.body }
+
+      	tr do
+          td(width: '33%') { params.planevent.planeventtitle }
+          td(width: '33%') { params.planevent.description }
+          td(width: '33%') { params.planevent.created_at.to_s }
         end
+
       end
 
     end
@@ -988,16 +968,15 @@ end
 ```
 
 Things to note in the code above:
+See how we fetch the Reactive Record Planevent collection in before_mount. Setting this here instead of in after_mountmeans that we do not need to worry about `@planevents` being nil as the collection will always contain at least one entry with the actual records being lazy loaded when needed.
+Note how we are binding the state variable `new_planevent` to the `FormControl` and then setting its value based on the value being passed to the `.on(:change)` block. This is a standard React pattern.
+Also see how we are saving the new `planevent` where Reactive Record's save returns a promise which means that the block after save is only evaluated when it returns yet React would have moved on to the rest of the code.
+Finally note that there is no code which checks to see if there are new planevent yet when you run this, the list of `Planevents` remains magically up-to-date.
+Welcome to the wonderful of **HyperReact** and **HyperMesh** !
 
-See how we fetch the Reactive Record Post collection in `before_mount`. Setting this here instead of in `after_mount` means that we do not need to worry about `@posts` being `nil` as the collection will always contain at least one entry with the actual records being lazy loaded when needed.
+Refresh your browser and you should have your Showcase app working.
 
-Note how we are binding the state variable `new_post` to the `FormControl` and then setting its value based on the value being passed to the `.on(:change)` block. This is a standard React pattern.
 
-Also see how we are saving the new post where Reactive Record's save returns a promise which means that the block after save is only evaluated when it returns yet React would have moved on to the rest of the code.
-
-Finally note that there is no code which checks to see if there are new posts yet when you run this, the list of posts remains magically up-to-date.
-
-Welcome to the wonderful of Reactive Record and React!
 
 ## Synchromesh
 
