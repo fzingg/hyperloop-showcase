@@ -203,7 +203,85 @@ Create a new folder : `app/models/public`
 
 ```
 
-### Step 3: Webpack for managing front-end assets
+### Step 3: Creating the first components
+
+lets create the component via the generator :
+```ruby
+rails g hyperloop:component Home::Show
+```
+This will add a new Component at `app/views/components/home/show.rb`
+```ruby
+#app/views/components/home/show.rb
+module Components
+  module Home
+    class Show < React::Component::Base
+
+      # param :my_param
+      # param param_with_default: "default value"
+      # param :param_with_default2, default: "default value" # alternative syntax
+      # param :param_with_type, type: Hash
+      # param :array_of_hashes, type: [Hash]
+      # collect_all_other_params_as :attributes  #collects all other params into a hash
+
+      # The following are the most common lifecycle call backs,
+      # the following are the most common lifecycle call backs# delete any that you are not using.
+      # call backs may also reference an instance method i.e. before_mount :my_method
+
+      before_mount do
+        # any initialization particularly of state variables goes here.
+        # this will execute on server (prerendering) and client.
+      end
+
+      after_mount do
+        # any client only post rendering initialization goes here.
+        # i.e. start timers, HTTP requests, and low level jquery operations etc.
+      end
+
+      before_update do
+        # called whenever a component will be re-rerendered
+      end
+
+      before_unmount do
+        # cleanup any thing (i.e. timers) before component is destroyed
+      end
+
+      def render
+        div do
+          "Home::Show"
+        end
+      end
+    end
+  end
+end
+```
+
+And add a route to your `routes.rb`
+```ruby
+#routes.rb
+root 'home#show'
+```
+And a show method in the HomeController which will render the component using the render_component helper.
+```ruby
+#app/controllers/home_controller.rb
+class HomeController < ApplicationController
+    def show
+		render_component
+    end
+end
+```
+
+Fire up the server with 
+```ruby
+bundle exec rails s
+```` 
+Refresh your browser and if all has gone well, you should be rewarded with `Home::Show` in your browser.
+If you open your JavaScript console you can also check which version of React has been loaded.
+```javascript
+React.version
+```
+Remember this value, as we will need to use it later.
+
+### Step 4: Webpack for managing front-end assets
 
 There are three parts to this step:  
 
