@@ -302,7 +302,7 @@ will create an empty package.json in your root folder
 ```
 npm install webpack --save-dev
 ```
-install Webpack and create a node_modules folder
+install Webpack and create a `node_modules` folder
 ```
 npm install webpack -g
 ```
@@ -315,10 +315,105 @@ The commands above will have created a `package.json` (similar concept to a `G
 /node_modules
 ```
 
+##### Step 4.2: Setting up Webpack
 
+Now that we have Webpack, we need to add 3 boiler plate files to configure it. As you add more JavaScript packages you will be updating these files. Again this is similar to updating your Gemfile when you add new gems to a project.
+Add `webpack.config.js` to the root of your project:
 
+For Webpack 1.x version :
 
+```javascript
+// webpack.config.js
+var path = require("path");
 
+module.exports = {
+    context: __dirname,
+    entry: {
+      client_only:  "./webpack/client_only.js",
+      client_and_server: "./webpack/client_and_server.js"
+    },
+    output: {
+      path: path.join(__dirname, 'app', 'assets',   'javascripts', 'webpack'),
+      filename: "[name].js",
+      publicPath: "/webpack/"
+    },
+    module: {
+      loaders: [
+        // add any loaders here
+      ]
+    },
+    resolve: {
+      root: path.join(__dirname, '..', 'webpack')
+    },
+};
+```
+
+For Webpack 2.x version :
+
+```javascript
+// webpack.config.js
+var path = require("path");
+
+module.exports = {
+    context: __dirname,
+    entry: {
+      client_only:  "./webpack/client_only.js",
+      client_and_server: "./webpack/client_and_server.js"
+    },
+    output: {
+      path: path.join(__dirname, 'app', 'assets',   'javascripts', 'webpack'),
+      filename: "[name].js",
+      publicPath: "/webpack/"
+    },
+    module: {
+      loaders: [
+        // add any loaders here
+      ]
+    },
+    resolve: {
+	modules: [
+	path.join(__dirname, "src"),
+	"node_modules"
+	]
+	},
+};
+```
+
+Then create a folder called `webpack` and add the following two files:
+
+```javascript
+// webpack/client_only.js
+// any packages that depend specifically on the DOM go here
+// for example the webpack css loader generates code that will break prerendering
+console.log('client_only.js loaded');
+```
+
+```javascript
+// webpack/client_and_server.js
+// all other packages that you can run on both server (prerendering) and client go here
+// most well behaved packages can be required here
+console.log('client_and_server.js loaded');
+```
+
+##### Step 4.3: Using Webpack to build your client and server bundles
+
+Simply run this command:
+```
+webpack
+```
+You should see a result something like this:
+```bash
+Hash: 756a1dc4a11c8fccd0a4
+Version: webpack 1.14.0
+Time: 55ms
+               Asset     Size  Chunks             Chunk Names
+client_and_server.js  1.61 kB       0  [emitted]  client_and_server
+      client_only.js  1.61 kB       1  [emitted]  client_only
+   [0] ./webpack/client_and_server.js 214 bytes {0} [built]
+   [0] ./webpack/client_only.js 206 bytes {1} [built]
+ ```
+
+ Our c`lient_and_server.js` and `client_only.js` bundles are built and ready to be included in our application. If you look in your `app/assets/javascripts/webpack` folder you should see the two files there. Note that these bundles are empty at the moment as we have not added any JavaScript components yet. We will do that in another step.
 
 
 ## Working with native React components
