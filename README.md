@@ -978,58 +978,32 @@ Note how we are binding the state variable `new_planevent` to the `FormContro
 Also see how we are saving the new `planevent` where Reactive Record's save returns a promise which means that the block after save is only evaluated when it returns yet React would have moved on to the rest of the code.
 
 Finally note that there is no code which checks to see if there are new planevent yet when you run this, the list of `Planevents` remains magically up-to-date.
-Welcome to the wonderful of **HyperReact** and **HyperMesh** !
+Welcome to the wonderful world of **HyperReact** and **HyperMesh** !
 
 Refresh your browser and you should have your Showcase app working.
 
 
 
-## Synchromesh
+## Working with HyperMesh (push notifications part)
 
-[We will be using the Synchromesh gem](https://github.com/reactrb/synchromesh)
+**HyperMesh** Reactive Record part is the data layer between one client and its server and **HyperMesh** also uses push notifications to push changed records to all connected Reactive Record clients.
 
-Reactive Record is the data layer between one client and its server and Synchromesh uses push notifications to push changed records to all connected Reactive Record clients.
-
-Synchromesh is incredibly simple to setup. Add this line to your Gemfile:
+You need to add an initialiser `config/initializers/hyper_mesh.rb`
 
 ```ruby
-gem 'synchromesh', git: "https://github.com/reactrb/synchromesh.git"
-```
+#config/initializers/hyper_mesh.rb
 
-And then execute:
-
-``` text
-$ bundle install
-```
-
-Next add this line to your `components.rb`:
-
-```ruby
-require 'synchromesh'
-```
-
-Finally, you need to add an initialiser `config/initializers/synchromesh.rb`
-
-```ruby
-# config/initializers/synchromesh.rb
-Synchromesh.configuration do |config|
-  # this is the initialiser for polling, see the synchromesh
-  # documentation for using pusher.com
-  config.transport = :simple_poller
-  config.channel_prefix = "synchromesh"
-  config.opts = {
-    seconds_between_poll: 1.second,
-    seconds_polled_data_will_be_retained: 1.hour
-  }
+HyperMesh.configuration do |config|
+  config.transport = :action_cable
 end
 ```
 
-Restart your server, open two browser windows and be amazed to see any new posts added to one session magically appearing in the other!
+Restart your server, open two browser windows and be amazed to see any new planevents added to one session magically appearing in the other!
 
-Todo:
-+ Reactrb Router
 
-## Reactrb Hot-reloader and Opal IRB
+
+
+## Working with HyperReact Hot-reloader and Opal IRB
 
 Before we go any further, let's install too fantastic tools written by Forrest Chang:
 
@@ -1043,6 +1017,8 @@ We are also going to add the Foreman gem to run our Rails server and the Hot Loa
 Add the following lines to your `gemfile` and run `bundle`:
 
 ```ruby
+#gemfile
+
 gem 'opal_hot_reloader', git: 'https://github.com/fkchang/opal-hot-reloader.git'
 gem 'foreman'
 ```
@@ -1052,48 +1028,56 @@ gem 'foreman'
 Modify your `components.rb`, adding the following lines inside the if statement so they only run on the client and not as part of the server pre-rendering process:
 
 ```ruby
-require 'opal_hot_reloader'
-OpalHotReloader.listen(25222, true)
+#app/views/components.rb
+
+if React::IsomorphicHelpers.on_opal_client?
+  ...
+  require 'opal_hot_reloader'
+  OpalHotReloader.listen(25222, true)
+end
 ```
 
-Then modify your `procfile` so that the Hot Loader service will start whenever you start your server:
+Then create a `Procfile` in your Rails app root so the Hot Loader service will start whenever you start your server:
 
 ```text
-rails: bundle exec rails server
+#Procfile
+
+rails: bundle exec rails server -p 3000
 hotloader: opal-hot-reloader -p 25222 -d app/views/components
 ```
 
 To start both servers:
 
-`foreman start`
+`bundle exec foreman start`
 
-Refresh your browser for the last time and try modifying your `show.rb` component and you should see your changes appearing magically in your browser as you save. Pure joy.  
+Refresh your browser for the last time and try modifying your `planeventslist.rb` component and you should see your changes appearing magically in your browser as you save. Pure joy.  
+
 
 ## Further reading
 
-### Other Reactrb tutorials and examples
-+ [Getting started with Reactrb and Rails](https://github.com/loicboutet/reactrb_tutorial)
-+ [ChatRB Demo App](https://github.com/reactrb/reactrb.github.io/blob/master/docs/tutorial.md)
-+ [Reactive Record sample ToDo app](https://github.com/loicboutet/reactivetodo)
-+ [Flux pattern in Reactrb](https://github.com/reactrb/reactrb.github.io/wiki/Sending-data-from-deeply-nested-components)
-+ [Getting with Reactrb, React Bootstrap and Webpack](https://github.com/fkchang/getting-started-reactrb-webpack)
++ [HyperLoop Web site](http://ruby-hyperloop.io/)
 
-### Other Reactrb resources
-+ [Reactrb website](http://reactrb.org/)
-+ [Reactrb GitHub site](https://github.com/reactrb/reactrb)
+### Other HyperReact tutorials and examples
++ [Getting started with HyperReact and Rails](http://ruby-hyperloop.io/tutorials/hyperreact_with_rails/)
++ [Chat Demo App](http://ruby-hyperloop.io/tutorials/chat_app/)
++ [Flux Store Tutorial in HyperReact](http://ruby-hyperloop.io/tutorials/flux_store/)
++ [HyperReact, NPM and Webpack](http://ruby-hyperloop.io/tutorials/hyperreact_with_webpack/)
 
-### Reactrb is powered by React
 
-Reactrb and friends are in most cases simple DSL Ruby wrappers to the underlying native JavaScript libraries and React Components. It is really important to have a solid grip on how these technologies work to complement your understanding of Reactrb. Most searches for help on Google will take you to examples written in JSX or ES6 JavaScript but you will learn over time to transalte this to Reactrb equivalents. To make headway with Reactrb you do need a solid understanding of the underlying philosophy of React and its component based architecture. The 'Thinking in React' tutorial below is an excellent place to start. (Make sure you see the Flux pattern in Reactrb above for an example of how to communicate between grandparent and child components).   
+### HyperReact is powered by React
+
+**HyperReact** is powered by React
+**HyperReact** and friends are in most cases simple DSL Ruby wrappers to the underlying native JavaScript libraries and React Components. It is really important to have a solid grip on how these technologies work to complement your understanding of **HyperReact**. Most searches for help on Google will take you to examples written in JSX or ES6 JavaScript but you will learn over time to transalte this to **HyperReact** equivalents. To make headway with **HyperReact** you do need a solid understanding of the underlying philosophy of React and its component based architecture. The 'Thinking in React' tutorial below is an excellent place to start. (Make sure you see the Flux Store Tutorial in **HyperReact** above for an example of how to communicate between grandparent and child components).  
 
 + [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)
 + [React](https://facebook.github.io/react/docs/getting-started.html)
 + [React Router](https://github.com/reactjs/react-router)
 + [React Bootstrap](https://react-bootstrap.github.io/)
 
+
 ### Opal under the covers
 
-Reactrb is a DSL wrapper of React which uses Opal to compile Ruby code to ES5 native JavaScript. If you have not used Opal before then you should at a minimum read the excellent guides as they will teach you enough to get you started with Reactrb.
+**HyperReact** is a DSL wrapper of React which uses Opal to compile Ruby code to ES5 native JavaScript. If you have not used Opal before then you should at a minimum read the excellent guides as they will teach you enough to get you started with **HyperReact**.
 
 + [Opal](http://opalrb.org/)
 + [Opal Guides](http://opalrb.org/docs/guides/v0.9.2/index.html)
