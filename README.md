@@ -163,6 +163,7 @@ Opal.load('components');
 
 Finally you will need to update your `application.rb` to ensure everything works in production:
 ```ruby
+#config/application.rb
 config.eager_load_paths += %W(#{config.root}/app/models/public)
 config.eager_load_paths += %W(#{config.root}/app/views/components)
 config.autoload_paths += %W(#{config.root}/app/models/public)
@@ -172,6 +173,7 @@ config.assets.paths << ::Rails.root.join('app', 'models').to_s
 
 ##### Step 2.5: Update routes.rb
 ```ruby
+#routes.rb
 mount HyperMesh::Engine => '/rr'
 ```
 
@@ -420,15 +422,18 @@ client_and_server.js  1.61 kB       0  [emitted]  client_and_server
 Finally we need to require these two bundles into our rails asset pipeline.
 Edit `app/assets/javascripts/application.js` and add :
 ```javascript
+// app/assets/javascripts/application.js
 //= require 'webpack/client_only'
 ```
 Then edit `app/views/components.rb` and directly after `require 'hyper-react'` add the following two lines:
 ```ruby
+#app/views/components.rb
 require 'webpack/client_and_server.js'
 require 'reactrb/auto-import'
 ```
 And remove the following line :
 ```ruby
+#app/views/components.rb
 require 'react/react-source'
 ```
 
@@ -499,6 +504,7 @@ npm install react-player --save
 
 Next we need to `require` it in `webpack/client_and_server.js`
 ```javascript
+//webpack/client_and_server.js
 ReactPlayer = require('react-player')
 ```
 
@@ -509,6 +515,7 @@ webpack
 
 And then finally let's add it to our Show component:
 ```ruby
+#app/views/components/home/show.rb
 def render
   div do
     ReactPlayer(url:  'https://www.youtube.com/embed/FzCsDVfPQqk',
@@ -571,6 +578,7 @@ Note: The `--save` option will update the package.json file.
 
 And then we need to `require` it in `webpack/client_and_server.js` by adding this line:
 ```javascript
+//webpack/client_and_server.js
 ReactBootstrap = require('react-bootstrap')
 ```
 Run the `webpack` command again, and restart your rails server.
@@ -584,6 +592,7 @@ and you will see the ReactBootstrap object with all its components like Accordio
 To make sure everything is working lets add a *Button* to our our Show component like this:
 
 ```ruby
+#app/views/components/home/show.rb
 module Components
   module Home
     class Show < React::Component::Base
@@ -612,6 +621,7 @@ Now edit your `webpack.config.js` file, and update the loaders section so it loo
 
 For Webpack 1.x versions
 ```javascript
+//webpack.config.js
 var path = require("path");
 
 module.exports = {
@@ -640,6 +650,7 @@ module.exports = {
 ```
 For Webpack 2.x versions
 ```javascript
+//webpack.config.js
 var path = require("path");
 
 module.exports = {
@@ -680,6 +691,7 @@ Now we are ready to require CSS files, and have webpack build a complete bundle 
 
 To bundle in the bootstrap css file add this line to `webpack/client_only.js`
 ```javascript
+//webpack/client_only.js
 require('bootstrap/dist/css/bootstrap.css');
 ```
 
@@ -693,6 +705,7 @@ Now run `webpack` to update our bundles, and restart your server.  Now our butto
 Now that everything is loaded, lets update our component to use a few more of the Bootstrap components.  Update your Show component so that it looks like this:
 
 ```ruby
+#app/views/components/home/show.rb
 module Components
   module Home
     class Show < React::Component::Base
@@ -745,6 +758,7 @@ See with `div.container` we are mixing in CSS style which will compile into `<di
 Also notice how I have added an `.on(:click)` event handler to the `MenuItem` component while setting `href: '#'` as this will allow us to handle the event instead of navigating to a new page.
 
 So far we have a very basic application which is looking OK and showing a video. Time to do something a little more interesting. How about if we add Post and Comment functionality which will let us explore Reactive Record!
+
 
 
 
