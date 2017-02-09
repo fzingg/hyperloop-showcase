@@ -307,7 +307,6 @@ install Webpack and create a node_modules folder
 npm install webpack -g
 ```
 so we can run Webpack from the command line
-```
 
 The commands above will have created a `package.json` (similar concept to a `Gemfile`) and a `node_modules` folder containing hundreds of JavaScript dependancies that we do not need in the source of our project so let’s tell git to ignore them by adding a `.gitignore` file:
 
