@@ -162,7 +162,7 @@ Opal.load('components');
 ##### Step 2.4: Update application.rb
 
 Finally you will need to update your `application.rb` to ensure everything works in production:
-```
+```ruby
 config.eager_load_paths += %W(#{config.root}/app/models/public)
 config.eager_load_paths += %W(#{config.root}/app/views/components)
 config.autoload_paths += %W(#{config.root}/app/models/public)
@@ -171,12 +171,12 @@ config.assets.paths << ::Rails.root.join('app', 'models').to_s
 ```
 
 ##### Step 2.5: Update routes.rb
-```
+```ruby
 mount HyperMesh::Engine => '/rr'
 ```
 
 ##### Step 2.6: Create app/models/models.rb
-```
+```ruby
 #app/models/models.rb
 require_tree './public' if RUBY_ENGINE == 'opal'
 ```
@@ -186,7 +186,7 @@ require_tree './public' if RUBY_ENGINE == 'opal'
 Create a new folder : `app/models/public`
 
 ##### Step 2.8: Create app/policies/application_policy.rb
-```
+```ruby
 	#app/policies/application_policy.rb
 	# Policies regulate access to your public models
 	# The following policy will open up full access (but only in development)
