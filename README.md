@@ -790,7 +790,6 @@ So far we have a very basic application which is looking OK and showing a video.
 
 ## Working with HyperMesh (ActiveRecord API part)
 
-[We will be using the Reactive Record gem](https://github.com/reactrb/reactive-record)
 
 **HyperMesh** compiles your Active Record models so they are accessible to the front-end and implements an API based on your models and their associations. Lazy loads just the data that is needed to render a component and is fully integrated with **HyperReact** and paired with **HyperMesh** to push database changes to all connected clients. **HyperMesh** gives you Relay + GraphQL like functionality with a fraction of the effort and complexity (the original idea for Reactive Record is credited to Volt and not Relay).
 
@@ -822,12 +821,15 @@ rake db:migrate
 
 ### Making your models accessible to HyperMesh
 
-**Hypermesh** needs to 'see' your models as a representation of them get compiled into JavaScript along with your **HyperReact** components so they are accessible in your client side code.
+**HyperMesh** needs to 'see' your models as a representation of them get compiled into JavaScript along with your **HyperReact** components so they are accessible in your client side code.
 The convention (though this is choice and you can change this if you prefer) is to create a `public` folder under models and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
 
 Create a new folder : `models/public`
+
 Then move `planevent.rb` to `models/public`
+
 (Only for Rails 5.x)  Move `app/models/application_record.rb` to `app/models/public/`
+
 
 Next create `_react_public_models.rb` in your `models` folder:
 ```ruby
@@ -968,9 +970,13 @@ end
 ```
 
 Things to note in the code above:
-See how we fetch the Reactive Record Planevent collection in before_mount. Setting this here instead of in after_mountmeans that we do not need to worry about `@planevents` being nil as the collection will always contain at least one entry with the actual records being lazy loaded when needed.
+
+See how we fetch the Reactive Record `Planevent` collection in `before_mount`. Setting this here instead of in `after_mount` means that we do not need to worry about `@planevents` being `nil` as the collection will always contain at least one entry with the actual records being lazy loaded when needed.
+
 Note how we are binding the state variable `new_planevent` to the `FormControl` and then setting its value based on the value being passed to the `.on(:change)` block. This is a standard React pattern.
+
 Also see how we are saving the new `planevent` where Reactive Record's save returns a promise which means that the block after save is only evaluated when it returns yet React would have moved on to the rest of the code.
+
 Finally note that there is no code which checks to see if there are new planevent yet when you run this, the list of `Planevents` remains magically up-to-date.
 Welcome to the wonderful of **HyperReact** and **HyperMesh** !
 
