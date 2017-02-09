@@ -320,7 +320,7 @@ The commands above will have created a `package.json` (similar concept to a `G
 Now that we have Webpack, we need to add 3 boiler plate files to configure it. As you add more JavaScript packages you will be updating these files. Again this is similar to updating your Gemfile when you add new gems to a project.
 Add `webpack.config.js` to the root of your project:
 
-For Webpack 1.x version :
+For Webpack 1.x versions :
 
 ```javascript
 // webpack.config.js
@@ -348,7 +348,7 @@ module.exports = {
 };
 ```
 
-For Webpack 2.x version :
+For Webpack 2.x versions :
 
 ```javascript
 // webpack.config.js
@@ -422,7 +422,7 @@ Edit `app/assets/javascripts/application.js` and add :
 ```javascript
 //= require 'webpack/client_only'
 ```
-Then edit `app/views/components.rb` and directly after require `hyper-react` add the following two lines:
+Then edit `app/views/components.rb` and directly after `require 'hyper-react'` add the following two lines:
 ```ruby
 require 'webpack/client_and_server.js'
 require 'reactrb/auto-import'
@@ -435,14 +435,15 @@ require 'react/react-source'
 ##### Step 4.5: Installing React and ReactDOM
 
 This step is really simple as we have NPM installed. Just run these two commands:
+to install React :
 ```
 npm install react --save 
 ```
-to install React 
+to install ReactDOM :
 ```
 npm install react-dom --save
 ```
-to install ReactDOM
+
 
 Note how this modifies your `package.json` and installs React and ReactDOM in your `node_modules` folder.
 
@@ -484,9 +485,10 @@ Reactive record prerendered data being loaded: [Object]
 Congratulations you are setup and ready to begin adding javascript packages to your application.
 
 
+
 ## Working with native React components
 
-It is time to reap some of the rewards from all the hard work above. We have everything setup so we can easily add front end components and work with them in Reactrb. Lets jump in and add a native React component that plays a video.
+It is time to reap some of the rewards from all the hard work above. We have everything setup so we can easily add front end components and work with them in **HyperReact**. Lets jump in and add a native React component that plays a video.
 
 [We are going to use Pete Cook's React rplayr](https://github.com/CookPete/rplayr)
 
@@ -517,6 +519,8 @@ end
 ```
 
 Refresh your browser and you should have a video. How simple was that!
+
+
 
 ## Working with React Bootstrap
 
@@ -549,7 +553,7 @@ Sample 4 - In Reactrb (with React Bootstrap):
 		someMethod
 	end
 
-As you can see, sample 3 & 4 are not that different and as a Reactrb developer, I actually prefer sample 3. If I were a JavaScript or JSX developer I would completely understand the advantage of abstracting Bootstrap CSS into React Components so I don't have to work directly with CSS and JavaScript but this is not the case with Reactrb as CSS classes are added to HTML elements with simple dot notation:
+As you can see, sample 3 & 4 are not that different and as a Reactrb developer, I actually prefer sample 3. If I were a JavaScript or JSX developer I would completely understand the advantage of abstracting Bootstrap CSS into React Components so I don't have to work directly with CSS and JavaScript but this is not the case with **HyperReact** as CSS classes are added to HTML elements with simple dot notation:
 
 	span.pull_right {}
 
@@ -559,7 +563,7 @@ compiles to (note the conversion from _ to -)
 
 So I hear you ask: why if I prefer the non-React Bootstrap syntax why am worrying about React Bootstrap? For one very simple reason: components like Navbar and Modal that requires `bootstrap.js` will not work with React on it's own so without the React Bootstrap project you would need to implement all that functionality yourself. The React Bootstrap project has re-implemented all this functionality as React components.
 
-Lets implement a Navbar in this project using React Bootstrap in Reactrb. First, we need to install Bootstrap and React Bootstrap:
+Lets implement a Navbar in this project using React Bootstrap in **HyperReact**. First, we need to install Bootstrap and React Bootstrap:
 
 	npm install bootstrap react-bootstrap --save
 
@@ -594,7 +598,7 @@ module Components
   end
 end
 ```
-Notice that we reference `ReactBoostrap` in ruby using the same identifer that was in the require statement in our `client_and_server.js` webpack bundle.  The first time Reactrb hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the javascript name space for something that looks either like a component or library of components.  It then defines the appropriate module or component class wrapper in ruby.
+Notice that we reference `ReactBoostrap` in ruby using the same identifer that was in the require statement in our `client_and_server.js` webpack bundle.  The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the javascript name space for something that looks either like a component or library of components.  It then defines the appropriate module or component class wrapper in ruby.
 
 Visit your page and if all is well you will see a clickable button.  However it will not have any styles.  This is because ReactBootstrap does not automatically depend on any particular style sheet, so we will have to supply one.  An easy way to do this is to just copy the css file from the bootstrap repo, and stuff it our rails assets directory, however with a little upfront work we can setup webpack to do it all for us.
 
@@ -606,6 +610,7 @@ Notice we use `--save-dev` instead of just `--save` as these packages are only u
 
 Now edit your `webpack.config.js` file, and update the loaders section so it looks like this:
 
+For Webpack 1.x versions
 ```javascript
 var path = require("path");
 
@@ -629,6 +634,41 @@ module.exports = {
           loader: 'url?limit=10000&mimetype=image/svg+xml'
         }
       ]
+    },
+...
+};
+```
+For Webpack 2.x versions
+```javascript
+var path = require("path");
+
+module.exports = {
+...
+    module: {
+      rules: [
+      { test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
+      },
+      { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+      },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader'
+      },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+      }
+    ]
     },
 ...
 };
@@ -698,13 +738,16 @@ end
 
 A few things to notice in the code above:
 
-We add React Bootstrap components simply by `ReactBootstrap::Name` where `Name` is the JavaScriot component you want to render. All the components are documented in the React Bootstrap [documentation](https://react-bootstrap.github.io/components.html)
+We add React Bootstrap components simply by `ReactBootstrap::Name` where `Name` is the JavaScript component you want to render. All the components are documented in the React Bootstrap [documentation](https://react-bootstrap.github.io/components.html)
 
 See with `div.container` we are mixing in CSS style which will compile into `<div class='container'>`
 
 Also notice how I have added an `.on(:click)` event handler to the `MenuItem` component while setting `href: '#'` as this will allow us to handle the event instead of navigating to a new page.
 
 So far we have a very basic application which is looking OK and showing a video. Time to do something a little more interesting. How about if we add Post and Comment functionality which will let us explore Reactive Record!
+
+
+
 
 ## Using Reactrb Reactive Record
 
