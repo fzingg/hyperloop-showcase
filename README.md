@@ -119,6 +119,7 @@ Files required in `app/views/components.rb` will be made available to the server
 
 ```ruby
 #app/views/components.rb
+
 require 'opal'
 
 require 'reactrb/auto-import'
@@ -174,12 +175,14 @@ config.assets.paths << ::Rails.root.join('app', 'models').to_s
 ##### Step 2.5: Update routes.rb
 ```ruby
 #routes.rb
+
 mount HyperMesh::Engine => '/rr'
 ```
 
 ##### Step 2.6: Create app/models/models.rb
 ```ruby
 #app/models/models.rb
+
 require_tree './public' if RUBY_ENGINE == 'opal'
 ```
 
@@ -190,6 +193,7 @@ Create a new folder : `app/models/public`
 ##### Step 2.8: Create app/policies/application_policy.rb
 ```ruby
 	#app/policies/application_policy.rb
+
 	# Policies regulate access to your public models
 	# The following policy will open up full access (but only in development)
 	# The policy system is very flexible and powerful.  See the documentation
@@ -214,6 +218,7 @@ rails g hyperloop:component Home::Show
 This will add a new Component at `app/views/components/home/show.rb`
 ```ruby
 #app/views/components/home/show.rb
+
 module Components
   module Home
     class Show < React::Component::Base
@@ -260,11 +265,13 @@ end
 And add a route to your `routes.rb`
 ```ruby
 #routes.rb
+
 root 'home#show'
 ```
 And a show method in the HomeController which will render the component using the render_component helper.
 ```ruby
 #app/controllers/home_controller.rb
+
 class HomeController < ApplicationController
     def show
 		render_component
@@ -314,6 +321,7 @@ The commands above will have created a `package.json` (similar concept to a `G
 
 ```
 #/.gitignore
+
 /node_modules
 ```
 
@@ -326,6 +334,7 @@ For Webpack 1.x versions :
 
 ```javascript
 // webpack.config.js
+
 var path = require("path");
 
 module.exports = {
@@ -354,6 +363,7 @@ For Webpack 2.x versions :
 
 ```javascript
 // webpack.config.js
+
 var path = require("path");
 
 module.exports = {
@@ -385,6 +395,7 @@ Then create a folder called `webpack` and add the following two files:
 
 ```javascript
 // webpack/client_only.js
+
 // any packages that depend specifically on the DOM go here
 // for example the webpack css loader generates code that will break prerendering
 console.log('client_only.js loaded');
@@ -423,17 +434,20 @@ Finally we need to require these two bundles into our rails asset pipeline.
 Edit `app/assets/javascripts/application.js` and add :
 ```javascript
 // app/assets/javascripts/application.js
+
 //= require 'webpack/client_only'
 ```
 Then edit `app/views/components.rb` and directly after `require 'hyper-react'` add the following two lines:
 ```ruby
 #app/views/components.rb
+
 require 'webpack/client_and_server.js'
 require 'reactrb/auto-import'
 ```
 And remove the following line :
 ```ruby
 #app/views/components.rb
+
 require 'react/react-source'
 ```
 
@@ -455,6 +469,7 @@ Note how this modifies your `package.json` and installs React and ReactDOM in yo
 Next we need to require them into `client_and_server.js` :
 ```javascript
 // webpack/client_and_server.js
+
 ReactDOM = require('react-dom')
 React = require('react')
 ```
@@ -505,6 +520,7 @@ npm install react-player --save
 Next we need to `require` it in `webpack/client_and_server.js`
 ```javascript
 //webpack/client_and_server.js
+
 ReactPlayer = require('react-player')
 ```
 
@@ -516,6 +532,7 @@ webpack
 And then finally let's add it to our Show component:
 ```ruby
 #app/views/components/home/show.rb
+
 def render
   div do
     ReactPlayer(url:  'https://www.youtube.com/embed/FzCsDVfPQqk',
@@ -579,6 +596,7 @@ Note: The `--save` option will update the package.json file.
 And then we need to `require` it in `webpack/client_and_server.js` by adding this line:
 ```javascript
 //webpack/client_and_server.js
+
 ReactBootstrap = require('react-bootstrap')
 ```
 Run the `webpack` command again, and restart your rails server.
@@ -593,6 +611,7 @@ To make sure everything is working lets add a *Button* to our our Show component
 
 ```ruby
 #app/views/components/home/show.rb
+
 module Components
   module Home
     class Show < React::Component::Base
@@ -622,6 +641,7 @@ Now edit your `webpack.config.js` file, and update the loaders section so it loo
 For Webpack 1.x versions
 ```javascript
 //webpack.config.js
+
 var path = require("path");
 
 module.exports = {
@@ -651,6 +671,7 @@ module.exports = {
 For Webpack 2.x versions
 ```javascript
 //webpack.config.js
+
 var path = require("path");
 
 module.exports = {
@@ -692,6 +713,7 @@ Now we are ready to require CSS files, and have webpack build a complete bundle 
 To bundle in the bootstrap css file add this line to `webpack/client_only.js`
 ```javascript
 //webpack/client_only.js
+
 require('bootstrap/dist/css/bootstrap.css');
 ```
 
@@ -706,6 +728,7 @@ Now that everything is loaded, lets update our component to use a few more of th
 
 ```ruby
 #app/views/components/home/show.rb
+
 module Components
   module Home
     class Show < React::Component::Base
