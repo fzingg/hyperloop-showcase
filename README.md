@@ -413,7 +413,75 @@ client_and_server.js  1.61 kB       0  [emitted]  client_and_server
    [0] ./webpack/client_only.js 206 bytes {1} [built]
  ```
 
- Our c`lient_and_server.js` and `client_only.js` bundles are built and ready to be included in our application. If you look in your `app/assets/javascripts/webpack` folder you should see the two files there. Note that these bundles are empty at the moment as we have not added any JavaScript components yet. We will do that in another step.
+ Our `client_and_server.js` and `client_only.js` bundles are built and ready to be included in our application. If you look in your `app/assets/javascripts/webpack` folder you should see the two files there. Note that these bundles are empty at the moment as we have not added any JavaScript components yet. We will do that in another step.
+
+##### Step 4.4: Adding Webpack bundles to the Rails asset Pipeline
+
+Finally we need to require these two bundles into our rails asset pipeline.
+Edit `app/assets/javascripts/application.js` and add :
+```javascript
+//= require 'webpack/client_only'
+```
+Then edit `app/views/components.rb` and directly after require `hyper-react` add the following two lines:
+```ruby
+require 'webpack/client_and_server.js'
+require 'reactrb/auto-import'
+```
+And remove the following line :
+```ruby
+require 'react/react-source'
+```
+
+##### Step 4.5: Installing React and ReactDOM
+
+This step is really simple as we have NPM installed. Just run these two commands:
+```
+npm install react --save 
+```
+to install React 
+```
+npm install react-dom --save
+```
+to install ReactDOM
+
+Note how this modifies your `package.json` and installs React and ReactDOM in your `node_modules` folder.
+
+Next we need to require them into `client_and_server.js` :
+```javascript
+// webpack/client_and_server.js
+ReactDOM = require('react-dom')
+React = require('react')
+```
+And finally we need to run `webpack` to add them to the bundle:
+```
+webpack
+```
+The output should look something like this:
+```bash
+Hash: db338e21dcc44f66e5b5
+Version: webpack 1.14.0
+Time: 737ms
+               Asset     Size  Chunks             Chunk Names
+client_and_server.js   740 kB       0  [emitted]  client_and_server
+      client_only.js  1.61 kB       1  [emitted]  client_only
+   [0] ./webpack/client_and_server.js 271 bytes {0} [built]
+   [0] ./webpack/client_only.js 206 bytes {1} [built]
+    + 177 hidden modules
+```
+Note that `client_and_server.js` has gone from 1.61kB to 740kB as it now includes the source of React and ReactDOM.
+
+Now run `bundle exec rails s` and refresh the browser. Look at the console and you should see something like this:
+
+```
+client_and_server.js loaded
+client_only.js loaded
+client_and_server.js loaded
+************************ React Prerendering Context Initialized Show ***********************
+************************ React Browser Context Initialized ****************************
+Reactive record prerendered data being loaded: [Object]
+```
+
+Congratulations you are setup and ready to begin adding javascript packages to your application.
 
 
 ## Working with native React components
