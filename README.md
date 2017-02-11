@@ -1,6 +1,6 @@
 # HyperLoop Showcase
 
-This is a simple Rails application showcasing **HyperReact** (wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, React Bootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server side ActiveRecord models and implements push notifications)  and other associated technologies. 
+This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, React Bootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server side ActiveRecord models and implements push notifications)  and other associated technologies. 
 
 This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using ReactBootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
 
@@ -12,7 +12,7 @@ The Showcase application will look like this:
 
 + For the backend we are using [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/)
 + [NPM](https://www.npmjs.com/) and [Webpack](https://webpack.github.io/) to manage front end assets
-+ [HypeRails](https://github.com/ruby-hyperloop/hyper-rails) to install [HyperReact](https://github.com/ruby-hyperloop/hyper-react) and Opal in Rails 4.x or 5.x
++ [HyperRails](https://github.com/ruby-hyperloop/hyper-rails) to install [HyperReact](https://github.com/ruby-hyperloop/hyper-react) and Opal in Rails 4.x or 5.x
 + [HyperReact](https://github.com/ruby-hyperloop/hyper-react) to use [React](https://facebook.github.io/react/) with Rails and to write reactive UI components with Ruby's elegance
 + [React Bootstrap](https://react-bootstrap.github.io/) to show how to use native React components in [HyperReact](https://github.com/ruby-hyperloop/hyper-react)
 + [HyperMesh](https://github.com/ruby-hyperloop/hyper-mesh) between Rails models and the front end and to magically push 
@@ -27,7 +27,7 @@ The Showcase application will look like this:
 
 ### HyperReact Help and Questions
 
-+ [Gitter.im](https://gitter.im/reactrb/chat) for general questions, discussion, and interactive help.
++ [Gitter.im](https://gitter.im/ruby-hyperloop/chat) for general questions, discussion, and interactive help.
 + [Stack Overflow](http://stackoverflow.com/questions/tagged/reactrb) tag `reactrb` for specific problems.
 + [Github Issues](https://github.com/ruby-hyperloop/hyper-react/issues) for bugs, feature enhancements, etc.
 + [Further reading](#further-reading) at the end of this tutorial
@@ -165,12 +165,18 @@ Opal.load('components');
 Finally you will need to update your `application.rb` to ensure everything works in production:
 ```ruby
 #config/application.rb
-
-config.eager_load_paths += %W(#{config.root}/app/models/public)
-config.eager_load_paths += %W(#{config.root}/app/views/components)
-config.autoload_paths += %W(#{config.root}/app/models/public)
-config.autoload_paths += %W(#{config.root}/app/views/components)
-config.assets.paths << ::Rails.root.join('app', 'models').to_s
+...
+  class Application < Rails::Application
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
+    config.eager_load_paths += %W(#{config.root}/app/models/public)
+    config.eager_load_paths += %W(#{config.root}/app/views/components)
+    config.autoload_paths += %W(#{config.root}/app/models/public)
+    config.autoload_paths += %W(#{config.root}/app/views/components)
+    config.assets.paths << ::Rails.root.join('app', 'models').to_s
+  end
+...
 ```
 
 ##### Step 2.5: Update routes.rb
@@ -263,13 +269,13 @@ module Components
 end
 ```
 
-And add a route to your `routes.rb`
+Add a route to your `routes.rb`
 ```ruby
 #routes.rb
 
 root 'home#show'
 ```
-And a show method in the HomeController which will render the component using the render_component helper.
+Create the file `app/controllers/home_controller.rb` and add a show method. This will render the component using the render_component helper.
 ```ruby
 #app/controllers/home_controller.rb
 
