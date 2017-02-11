@@ -314,17 +314,19 @@ Run these three commands:
 ```
 npm init
 ```
-will create an empty package.json in your root folder
+Press enter at each prompt to leave the fields empty.  Then agree when asked it if is okay to write the `package.json` file.
+This will create an empty package.json (which is similar to a `Gemfile`) in your root folder.
 ```
 npm install webpack --save-dev
 ```
-install Webpack and create a `node_modules` folder
+This installs Webpack and creates a `node_modules` folder.  This folder contains hundreds of JavaScript dependancies.
+
 ```
 npm install webpack -g
 ```
-so we can run Webpack from the command line
+This enables us to run Webpack from the command line.
 
-The commands above will have created a `package.json` (similar concept to a `Gemfile`) and a `node_modules` folder containing hundreds of JavaScript dependancies that we do not need in the source of our project so let’s tell git to ignore them by adding a `.gitignore` file:
+Our project does not need all the dependencies in the `node_modules` folder, so let’s tell git to ignore them by adding a `.gitignore` file:
 
 ```
 #/.gitignore
@@ -335,7 +337,7 @@ The commands above will have created a `package.json` (similar concept to a `G
 ##### Step 4.2: Setting up Webpack
 
 Now that we have Webpack, we need to add 3 boiler plate files to configure it. As you add more JavaScript packages you will be updating these files. Again this is similar to updating your Gemfile when you add new gems to a project.
-Add `webpack.config.js` to the root of your project:
+Run `npm view webpack version` if you are unsure which version you have. Add `webpack.config.js` to the root of your project:
 
 For Webpack 1.x versions :
 
@@ -398,7 +400,7 @@ module.exports = {
 };
 ```
 
-Then create a folder called `webpack` and add the following two files:
+Then create a folder called `webpack` in your application root directory and add the following two files:
 
 ```javascript
 // webpack/client_only.js
@@ -438,8 +440,8 @@ client_and_server.js  1.61 kB       0  [emitted]  client_and_server
 
 ##### Step 4.4: Adding Webpack bundles to the Rails asset Pipeline
 
-Finally we need to require these two bundles into our rails asset pipeline.
-Edit `app/assets/javascripts/application.js` and add :
+Finally we need to require these two bundles in our rails asset pipeline.
+Edit `app/assets/javascripts/application.js` and add:
 ```javascript
 // app/assets/javascripts/application.js
 
