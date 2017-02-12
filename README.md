@@ -802,7 +802,7 @@ So far we have a very basic application which is looking OK and showing a video.
 
 **HyperMesh** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **HyperMesh** follows the syntax and semantics of ActiveRecord.
 
-Read more details about **HyperMesh** here : [HyperMesh ActiveRecord/](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
+Read more details about **HyperMesh** here : [HyperMesh ActiveRecord](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
 
 ##### Step 5.3.1: Creating the models
 
