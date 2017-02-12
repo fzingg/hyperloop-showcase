@@ -1,7 +1,5 @@
 require 'opal'
 
-require 'reactrb/auto-import'
-
 require 'hyper-react'
 require 'webpack/client_and_server.js'
 require 'reactrb/auto-import'
