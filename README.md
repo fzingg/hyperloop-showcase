@@ -59,7 +59,7 @@ This tutorial requires that Ruby, Rails, NPM and Webpack are installed. Please s
 
 ## Setup
 
-### Step 1: Creating a new Rails application
+## Step 1: Creating a new Rails application
 
 ```
 	rails new hyperloop-showcase
