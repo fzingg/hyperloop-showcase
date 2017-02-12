@@ -1,8 +1,8 @@
 # HyperLoop Showcase
 
-This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, ReactBootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications) and other associated technologies.
+This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, React-Bootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications) and other associated technologies.
 
-This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using ReactBootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
+This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using React-Bootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
 
 The Showcase application will look like this:
 
@@ -14,10 +14,22 @@ The Showcase application will look like this:
 + [NPM](https://www.npmjs.com/) and [Webpack](https://webpack.github.io/) to manage front end assets
 + [HyperRails](https://github.com/ruby-hyperloop/hyper-rails) to install [HyperReact](https://github.com/ruby-hyperloop/hyper-react) and Opal in Rails 4.x or 5.x
 + [HyperReact](https://github.com/ruby-hyperloop/hyper-react) to use [React](https://facebook.github.io/react/) with Rails and to write reactive UI components with Ruby's elegance
-+ [ReactBootstrap](https://react-bootstrap.github.io/) to show how to use native React components in [HyperReact](https://github.com/ruby-hyperloop/hyper-react)
++ [React-Bootstrap](https://react-bootstrap.github.io/) to show how to use native React components in [HyperReact](https://github.com/ruby-hyperloop/hyper-react)
 + [HyperMesh](https://github.com/ruby-hyperloop/hyper-mesh) between Rails models and the front end and to magically push
   changed data between all connected clients
 + [HyperReact Hot-Reloader and Opal IRB](https://github.com/fkchang/opal-hot-reloader) for programmer joy and hot-loading with developing
+
+
+## Index
+[Introduction](#introduction)
+[Step 1: Creating a new Rails application](#step-1:-creating-a-new-rails-application)
+[Step 2: Adding HyperReact and HyperMesh](#step-2:-adding-hyperreact-and-hypermesh)
+[Step 3: Creating the first components](#step-3:-creating-the-first-components)
+[Step 4: Managing front end assets with Webpack](#step-4:-managing-front-end-assets-with-webpack)
+[Step 5: Working with native React components](#step-5:-working-with-native-react-components)
+[Step 6: Working with HyperMesh (ActiveRecord API part)](#step-6:working-with-hypermesh-(activerecord-api-part))
+[Step 7: Working with Push Notifications and HyperMesh](#step-7:-working-with-push-notifications-and-hypermesh)
+[Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8:-working-with-hyperreact-hot-reloader-and-opal-irb)
 
 ## Introduction
 
@@ -298,7 +310,7 @@ React.version
 Remember this value, as we will need to use it later.
 
 
-### Step 4: Webpack for managing front end assets
+### Step 4: Managing front end assets with Webpack
 
 There are 5 steps to this process:
 
@@ -557,34 +569,34 @@ Refresh your browser and you should have a video. How simple was that!
 
 
 
-##### Step 5.2: Working with ReactBootstrap
+##### Step 5.2: Working with React-Bootstrap
 
-[We will be using ReactBootstrap which is a native React library](https://react-bootstrap.github.io/)
+[We will be using React-Bootstrap which is a native React library](https://react-bootstrap.github.io/)
 
-The main purpose for ReactBootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Reactrb is that we already work in beautiful Ruby. To emphasize this point, consider the following:
+The main purpose for React-Bootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Reactrb is that we already work in beautiful Ruby. To emphasize this point, consider the following:
 
-Sample 1 - In HTML (without ReactBootstrap):
+Sample 1 - In HTML (without React-Bootstrap):
 
 	<button id="something-btn" type="button" class="btn btn-success btn-sm">
 	  Something
 	</button>
 	$('#something-btn').click(someCallback);
 
-Sample 2 - In JSX (with ReactBootstrap components):
+Sample 2 - In JSX (with React-Bootstrap components):
 
 	<Button bsStyle="success" bsSize="small" onClick={someCallback}>
 	  Something
 	</Button>
 
-Sample 3 - In Reactrb (without ReactBootstrap):
+Sample 3 - In Reactrb (without React-Bootstrap):
 
 	button.btn_success.btn_sm {'Something'}.on(:click) do
 		someMethod
 	end
 
-Sample 4 - In Reactrb (with ReactBootstrap):
+Sample 4 - In Reactrb (with React-Bootstrap):
 
-	ReactBootstrap::Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
+	React-Bootstrap::Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
 		someMethod
 	end
 
@@ -596,9 +608,9 @@ which compiles to (note the conversion from _ to -)
 
 	<span class='pull-right'></span>
 
-So I hear you ask: why if I prefer the non-ReactBootstrap syntax why am worrying about ReactBootstrap? For one very simple reason: components like Navbar and Modal that require `bootstrap.js` will not work with React on its own, so without the ReactBootstrap project you would need to implement all that functionality yourself. The ReactBootstrap project has re-implemented this functionality as React components.
+So I hear you ask: why if I prefer the non-React-Bootstrap syntax why am worrying about React-Bootstrap? For one very simple reason: components like Navbar and Modal that require `bootstrap.js` will not work with React on its own, so without the React-Bootstrap project you would need to implement all that functionality yourself. The React-Bootstrap project has re-implemented this functionality as React components.
 
-Let's implement a Navbar in this project using ReactBootstrap in **HyperReact**. First, we need to install Bootstrap and ReactBootstrap:
+Let's implement a Navbar in this project using React-Bootstrap in **HyperReact**. First, we need to install Bootstrap and React-Bootstrap:
 
 	npm install bootstrap react-bootstrap --save
 
@@ -612,11 +624,11 @@ ReactBootstrap = require('react-bootstrap')
 ```
 Run the `webpack` command again, and restart your rails server.
 
-If you refresh your browser now and open the JavaScript console we will be able to interact with ReactBootstrap by typing:
+If you refresh your browser now and open the JavaScript console we will be able to interact with React-Bootstrap by typing:
 
 In the JavaScript console type: ```ReactBootstrap```
 
-and you will see the ReactBootstrap object with all its components like Accordion, Alert, Badge, Breadcrumb, etc. This is great news. ReactBootstrap is installed and ready to use. Accessing the JavaScript object in this way is a great way to see what you have to work with. Sometimes the documentation of a component is not as accurate as actually seeing what you have in the component itself.
+and you will see the React-Bootstrap object with all its components like Accordion, Alert, Badge, Breadcrumb, etc. This is great news. React-Bootstrap is installed and ready to use. Accessing the JavaScript object in this way is a great way to see what you have to work with. Sometimes the documentation of a component is not as accurate as actually seeing what you have in the component itself.
 
 To make sure everything is working let's add a *Button* to our our Show component like this:
 
@@ -639,7 +651,7 @@ end
 ```
 Notice that we reference `ReactBoostrap` in Ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle. The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the Javascript name space for something that looks either like a component or library of components. It then defines the appropriate module or component class wrapper in Ruby.
 
-Visit your page, and if all is well you will see a clickable button. However it will not have any style. This is because ReactBootstrap does not automatically depend on any particular style sheet, so we will have to supply one. An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can get Webpack to do it all for us.
+Visit your page, and if all is well you will see a clickable button. However it will not have any style. This is because React-Bootstrap does not automatically depend on any particular style sheet, so we will have to supply one. An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can get Webpack to do it all for us.
 
 First let's add four Webpack *loaders* using npm:
 ```text
@@ -785,7 +797,7 @@ end
 
 A few things to notice in the code above:
 
-We add ReactBootstrap components simply by `ReactBootstrap::Name` where `Name` is the JavaScript component you want to render. All the components are documented in the ReactBootstrap [documentation](https://react-bootstrap.github.io/components.html)
+We add React-Bootstrap components simply by `ReactBootstrap::Name` where `Name` is the JavaScript component you want to render. All the components are documented in the React-Bootstrap [documentation](https://react-bootstrap.github.io/components.html)
 
 See with `div.container` we are mixing in CSS style which will compile into `<div class='container'>`
 
@@ -797,13 +809,13 @@ So far we have a very basic application which is looking OK and showing a video.
 
 
 
-##### Step 5.3: Working with HyperMesh (ActiveRecord API part)
+##### Step 6: Working with HyperMesh (ActiveRecord API part)
 
 **HyperMesh** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **HyperMesh** follows the syntax and semantics of ActiveRecord.
 
-Read more details about **HyperMesh** here : [HyperMesh ActiveRecord](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
+Read more details about **HyperMesh** here: [HyperMesh ActiveRecord](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
 
-##### Step 5.3.1: Creating the models
+##### Step 6.1: Creating the models
 
 ```
 rails g model Planevent
@@ -829,7 +841,7 @@ Now run the migration:
 rails db:migrate
 ```
 
-##### Step 5.3.2: Making your models accessible to HyperMesh
+##### Step 6.2: Making your models accessible to HyperMesh
 
 **HyperMesh** needs to 'see' your models because a representation of them gets compiled into JavaScript along with your **HyperReact** components so they are accessible in your client-side code.
 The convention (though this is choice and you can change it if you prefer) is to create a `public` folder under models and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
@@ -853,7 +865,7 @@ Finally add a line to `views/components.rb`:
 require '_react_public_models'
 ```
 
-##### Step 5.3.3: Accessing your models in HyperReact components
+##### Step 6.3: Accessing your models in HyperReact components
 
 To get started, let's create a new component which will display a list of Events under the video:
 
@@ -992,7 +1004,7 @@ Refresh your browser and you should have your Showcase app working.
 
 
 
-##### Step 5.3.4: Working with Push Notifications and HyperMesh
+##### Step 7: Working with Push Notifications and HyperMesh
 
 The **HyperMesh** ReactiveRecord part is the data layer between one client and its server. **HyperMesh** also uses push notifications to push changed records to all connected ReactiveRecord clients.
 
@@ -1011,7 +1023,7 @@ Restart your server, open two browser windows and be amazed to see any new plane
 
 
 
-##### Step 5.3.5: Working with HyperReact Hot Reloader and Opal IRB
+##### Step 8 Working with HyperReact Hot Reloader and Opal IRB
 
 Before we go any further, let's install two fantastic tools written by Forrest Chang:
 
@@ -1064,7 +1076,9 @@ ReactBootstrap::Button(bsStyle: :primary) do
   "New Event"
 end.on(:click) { save_new_planevent }
 ```
-Save and you should see the button text changes magically in your browser without having to refresh. Pure joy.
+Save and you should see the button text change magically in your browser without having to refresh. Pure joy.  
+
+\* Note that there is a bug in PUMA 3.7.0, so if you are using this version of PUMA, the app will load at `localhost:5000` instead of `localhost:3000`.
 
 
 ## Further reading
@@ -1086,7 +1100,7 @@ Save and you should see the button text changes magically in your browser withou
 + [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)
 + [React](https://facebook.github.io/react/docs/getting-started.html)
 + [ReactRouter](https://github.com/reactjs/react-router)
-+ [ReactBootstrap](https://react-bootstrap.github.io/)
++ [React-Bootstrap](https://react-bootstrap.github.io/)
 
 
 ### Opal under the covers
