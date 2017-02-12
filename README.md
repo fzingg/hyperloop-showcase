@@ -1,6 +1,6 @@
 # HyperLoop Showcase
 
-This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, ReactBootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications)  and other associated technologies.
+This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, ReactBootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications) and other associated technologies.
 
 This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using ReactBootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
 
@@ -36,7 +36,7 @@ The Showcase application will look like this:
 
 Ruby libraries are distributed as gems, and are managed in your Rails app using the Gemfile and bundler.
 
-In the JavaScript world things are still evolving but I have found that the easiest way to manage JavaScript libraries is using NPM (Node Package Manager) and Webpack.  Pretty much every front end library is packaged with NPM these days so it is easy to get help and most things just work.
+In the JavaScript world things are still evolving but I have found that the easiest way to manage JavaScript libraries is using NPM (Node Package Manager) and Webpack. Pretty much every front end library is packaged with NPM these days so it is easy to get help and most things just work.
 
 Happily NPM, Webpack, Rails, and **HyperReact** can all play together very nicely.
 
@@ -314,12 +314,12 @@ Run these three commands:
 ```
 npm init
 ```
-Press enter at each prompt to leave the fields empty.  Agree when asked if it is okay to write the `package.json` file.
+Press enter at each prompt to leave the fields empty. Agree when asked if it is okay to write the `package.json` file.
 This will create an empty package.json (which is similar to a `Gemfile`) in your root folder.
 ```
 npm install webpack --save-dev
 ```
-This installs Webpack and creates a `node_modules` folder.  This folder contains hundreds of JavaScript dependencies.
+This installs Webpack and creates a `node_modules` folder. This folder contains hundreds of JavaScript dependencies.
 
 ```
 npm install webpack -g
@@ -638,9 +638,9 @@ module Components
   end
 end
 ```
-Notice that we reference `ReactBoostrap` in Ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle.  The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the Javascript name space for something that looks either like a component or library of components.  It then defines the appropriate module or component class wrapper in Ruby.
+Notice that we reference `ReactBoostrap` in Ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle. The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the Javascript name space for something that looks either like a component or library of components. It then defines the appropriate module or component class wrapper in Ruby.
 
-Visit your page, and if all is well you will see a clickable button.  However it will not have any style.  This is because ReactBootstrap does not automatically depend on any particular style sheet, so we will have to supply one.  An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can get Webpack to do it all for us.
+Visit your page, and if all is well you will see a clickable button. However it will not have any style. This is because ReactBootstrap does not automatically depend on any particular style sheet, so we will have to supply one. An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can get Webpack to do it all for us.
 
 First let's add four Webpack *loaders* using npm:
 ```text
@@ -718,7 +718,7 @@ module.exports = {
 };
 ```
 
-We have setup Webpack to use the style loader for processing a CSS file when one is required.  Because the Bootstrap CSS file will require font face files, we also have 4 font loaders. Now when any CSS file is required, we will have everything we need neatly packaged up.
+We have setup Webpack to use the style loader for processing a CSS file when one is required. Because the Bootstrap CSS file will require font face files, we also have 4 font loaders. Now when any CSS file is required, we will have everything we need neatly packaged up.
 
 We are now ready to require CSS files and have Webpack build a complete bundle including the CSS and any fonts referenced.
 
@@ -734,9 +734,9 @@ And install the Bootstrap package
 npm install bootstrap --save
 ```
 
-Now run `webpack` to update our bundles, and restart your server.  Now our button is properly styled you should be rewarded with a nice Bootstrap styled green Success Button.
+Now run `webpack` to update our bundles, and restart your server. Our button is now properly styled you should be rewarded with a nice Bootstrap styled green Success Button.
 
-Now that everything is loaded, let's update our component to use a few more of the Bootstrap components.  Update your Show component so that it looks like this:
+Now that everything is loaded, let's update our component to use a few more of the Bootstrap components. Update your Show component so that it looks like this:
 
 ```ruby
 #app/views/components/home/show.rb
