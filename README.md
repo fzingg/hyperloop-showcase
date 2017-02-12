@@ -314,7 +314,7 @@ Run these three commands:
 ```
 npm init
 ```
-Press enter at each prompt to leave the fields empty.  Then agree when asked it if is okay to write the `package.json` file.
+Press enter at each prompt to leave the fields empty.  Agree when asked if it is okay to write the `package.json` file.
 This will create an empty package.json (which is similar to a `Gemfile`) in your root folder.
 ```
 npm install webpack --save-dev
