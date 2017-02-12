@@ -23,19 +23,19 @@ The Showcase application will look like this:
 ## Index
 [Introduction](#introduction)
 
-[Step 1: Creating a new Rails application](#step-1)
+[Step 1: Creating a new Rails application](#step-1-creating-a-new-rails-application)
 
-[Step 2: Adding HyperReact and HyperMesh](#step-2)
+[Step 2: Adding HyperReact and HyperMesh](#step-2-adding-hyperreact-and-hypermesh)
 
-[Step 3: Creating the first components](#step-3)
+[Step 3: Creating the first components](#step-3-creating-the-first-components)
 
-[Step 4: Managing front end assets with Webpack](#step-4)
+[Step 4: Managing front end assets with Webpack](#step-4-managing-front-end-assets-with-webpack)
 
-[Step 5: Working with native React components](#step-5)
+[Step 5: Working with native React components](#step-5-working-with-native-react-components)
 
-[Step 6: Working with HyperMesh and ActiveRecord](#step-6)
+[Step 6: Working with HyperMesh and ActiveRecord](#step-6-working-with-hypermesh-and-activerecord)
 
-[Step 7: Working with HyperMesh and Push Notifications](#step-7)
+[Step 7: Working with HyperMesh and Push Notifications](#step-7-working-with-hypermesh-and-push-notifications)
 
 [Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8-working-with-hyperreact-hot-reloader-and-opal-irb))
 
@@ -69,8 +69,7 @@ This tutorial requires that Ruby, Rails, NPM and Webpack are installed. Please s
 
 ## Setup
 
-## Step 1
-### Creating a new Rails application
+## Step 1: Creating a new Rails application
 
 ```
 	rails new hyperloop-showcase
@@ -100,8 +99,7 @@ And in your browser
 
 You should see the Rails Welcome aboard page. Great, Rails is now installed. Let's get started with the interesting stuff.
 
-## Step 2
-### Adding HyperReact and HyperMesh
+## Step 2: Adding HyperReact and HyperMesh
 
 There are 2 ways do achieve that:
 
@@ -240,8 +238,7 @@ Create a new folder: `app/models/public`
 
 ```
 
-## Step 3
-### Creating the first components
+## Step 3: Creating the first components
 
 Let's create the component via the generator:
 ```ruby
@@ -323,8 +320,7 @@ React.version
 Remember this value, as we will need to use it later.
 
 
-## Step 4
-### Managing front end assets with Webpack
+## Step 4: Managing front end assets with Webpack
 
 There are 5 steps to this process:
 
@@ -541,8 +537,7 @@ Congratulations you are ready to begin adding Javascript packages to your applic
 
 
 
-## Step 5
-### Working with native React components
+## Step 5: Working with native React components
 
 Now we can reap the rewards of all the hard work above. We have everything setup to easily add front end components and work with them in **HyperReact**. Let's jump in and add a native React component that plays a video.
 
@@ -824,8 +819,7 @@ So far we have a very basic application which is looking OK and showing a video.
 
 
 
-## Step 6
-### Working with HyperMesh and ActiveRecord
+## Step 6: Working with HyperMesh and ActiveRecord
 
 **HyperMesh** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **HyperMesh** follows the syntax and semantics of ActiveRecord.
 
@@ -1020,8 +1014,7 @@ Refresh your browser and you should have your Showcase app working.
 
 
 
-## Step 7
-### Working with HyperMesh and Push Notifications
+## Step 7: Working with HyperMesh and Push Notifications
 
 The **HyperMesh** ReactiveRecord part is the data layer between one client and its server. **HyperMesh** also uses push notifications to push changed records to all connected ReactiveRecord clients.
 
