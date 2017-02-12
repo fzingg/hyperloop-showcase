@@ -22,7 +22,8 @@ The Showcase application will look like this:
 
 ## Index
 [Introduction](#introduction)
-[Step 1: Creating a new Rails application](#step-1:)
+[Setup](#setup)
+[Step 1: Creating a new Rails application](#step-1:-creating-a-new-rails-application)
 [Step 2: Adding HyperReact and HyperMesh](#step-2:-adding-hyperreact-and-hypermesh)
 [Step 3: Creating the first components](#step-3:-creating-the-first-components)
 [Step 4: Managing front end assets with Webpack](#step-4:-managing-front-end-assets-with-webpack)
@@ -59,8 +60,7 @@ This tutorial requires that Ruby, Rails, NPM and Webpack are installed. Please s
 
 ## Setup
 
-## Step 1: 
-### Creating a new Rails application
+### Step 1: Creating a new Rails application
 
 ```
 	rails new hyperloop-showcase
