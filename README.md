@@ -37,7 +37,7 @@ The Showcase application will look like this:
 
 [Step 7: Working with HyperMesh and Push Notifications](#step-7)
 
-[Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step8)
+[Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8-working-with-hyperreact-hot-reloader-and-opal-irb))
 
 [Further Reading](#further-reading)
 
@@ -1040,7 +1040,7 @@ Restart your server, open two browser windows and be amazed to see any new plane
 
 
 
-## Step 8: Working with HyperReact Hot Reloader and Opal IRB {#step8}
+## Step 8: Working with HyperReact Hot Reloader and Opal IRB
 
 Before we go any further, let's install two fantastic tools written by Forrest Chang:
 
