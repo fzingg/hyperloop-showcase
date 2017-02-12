@@ -37,7 +37,7 @@ The Showcase application will look like this:
 
 [Step 7: Working with HyperMesh and Push Notifications](#step-7-working-with-hypermesh-and-push-notifications)
 
-[Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8-working-with-hyperreact-hot-reloader-and-opal-irb))
+[Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8-working-with-hyperreact-hot-reloader-and-opal-irb)
 
 [Further Reading](#further-reading)
 
