@@ -1088,7 +1088,7 @@ end.on(:click) { save_new_planevent }
 ```
 Save and you should see the button text change magically in your browser without having to refresh. Pure joy.  
 
-\* Note that there is a bug in PUMA 3.7.0, so if you are using this version of PUMA, the app will load at `localhost:5000` instead of `localhost:3000`.
++ Note that there is a bug in PUMA 3.7.0, so if you are using this version of PUMA, the app will load at `localhost:5000` instead of `localhost:3000`.
 
 
 ## Further reading
