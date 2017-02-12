@@ -1,6 +1,6 @@
 # HyperLoop Showcase
 
-This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, ReactBootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server side ActiveRecord models and implements push notifications)  and other associated technologies.
+This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, ReactBootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications)  and other associated technologies.
 
 This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using ReactBootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
 
@@ -10,7 +10,7 @@ The Showcase application will look like this:
 
 ### Technologies highlighted in this Showcase application
 
-+ For the backend we are using [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/)
++ For the back end we are using [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/)
 + [NPM](https://www.npmjs.com/) and [Webpack](https://webpack.github.io/) to manage front end assets
 + [HyperRails](https://github.com/ruby-hyperloop/hyper-rails) to install [HyperReact](https://github.com/ruby-hyperloop/hyper-react) and Opal in Rails 4.x or 5.x
 + [HyperReact](https://github.com/ruby-hyperloop/hyper-react) to use [React](https://facebook.github.io/react/) with Rails and to write reactive UI components with Ruby's elegance
@@ -36,7 +36,7 @@ The Showcase application will look like this:
 
 Ruby libraries are distributed as gems, and are managed in your Rails app using the Gemfile and bundler.
 
-In the Javascript world things are still evolving but I have found that the easiest way to manage Javascript libraries is using NPM (Node Package Manager) and Webpack.  Pretty much every front end library is packaged with NPM these days so it is easy to get help and most things just work.
+In the JavaScript world things are still evolving but I have found that the easiest way to manage JavaScript libraries is using NPM (Node Package Manager) and Webpack.  Pretty much every front end library is packaged with NPM these days so it is easy to get help and most things just work.
 
 Happily NPM, Webpack, Rails, and **HyperReact** can all play together very nicely.
 
@@ -63,7 +63,7 @@ Then execute
 	rails db:create
 ```
 
-You should have a empty Rails application
+You should have an empty Rails application
 
 ```
 	bundle exec rails s
@@ -75,7 +75,7 @@ And in your browser
 	http://localhost:3000/
 ```
 
-You should be seeing the Rails Welcome aboard page. Great, Rails is now installed. Let's get started with the interesting stuff.
+You should see the Rails Welcome aboard page. Great, Rails is now installed. Let's get started with the interesting stuff.
 
 ### Step 2: Adding HyperReact and HyperMesh
 
@@ -85,9 +85,9 @@ There are 2 ways do achieve that:
 OR
 + Manually.
 
-In this tutorial we advise you to follow the manual way, so you can see what's happen and you can be sure to have all gems versions identical to those used in this tutorial.
+In this tutorial we advise you to follow the manual way, so you can see what's happening and can be sure to have all gems versions identical to those used in this tutorial.
 
-if you want to see the automatic way for the future you can go to the official **HyperLoop web page**: [HyperLoop installation with Rails](http://ruby-hyperloop.io/installation/#with-rails)
+If you want to see the automatic way for the future you can go to the official **HyperLoop web page**: [HyperLoop installation with Rails](http://ruby-hyperloop.io/installation/#with-rails)
 
 #### Manual installation of HyperReact and HyperMesh
 
@@ -111,7 +111,7 @@ bundle update
 
 ##### Step 2.2: Add the components directory and manifest
 
-Your react components will go into the `app/views/components/` directory of your rails app.
+Your React components will go into the `app/views/components/` directory of your rails app.
 
 Within your `app/views` directory you need to create a `components.rb` manifest.
 
@@ -141,11 +141,11 @@ require_tree './components'
 
 ##### Step 2.3: Client Side Assets
 
-Typically the client will need all the above assets, plus other files that are client only. Notably jQuery is a client only asset.
+Typically the client will need all the above assets, plus other files that are client only. Notably jQuery is a client-only asset.
 
-NOTE: You can update your existing `application.js` file, or convert it to ruby syntax and name it `application.rb`. The example below assumes you are using ruby syntax. However if you are using `application.js` then use the standard `//= require '...'` format and load your components with `Opal.load('components');`
+NOTE: You can update your existing `application.js` file, or convert it to Ruby syntax and name it `application.rb`. The example below assumes you are using Ruby syntax. However if you are using `application.js` then use the standard `//= require '...'` format and load your components with `Opal.load('components');`
 
-Assuming you are using the ruby syntax (application.rb), in `assets/javascript/application.rb` require your components manifest as well as any additional browser only assets.
+Assuming you are using the Ruby syntax (application.rb), in `assets/javascript/application.rb` require your components manifest as well as any additional browser only assets.
 
 ```ruby
 #assets/javascript/application.js
@@ -289,7 +289,7 @@ end
 Fire up the server with 
 ```ruby
 bundle exec rails s
-````
+```
 Refresh your browser and if all has gone well, you should be rewarded with `Home::Show` in your browser.
 If you open your JavaScript console you can also check which version of React has been loaded.
 ```javascript
@@ -298,7 +298,7 @@ React.version
 Remember this value, as we will need to use it later.
 
 
-### Step 4: Webpack for managing front-end assets
+### Step 4: Webpack for managing front end assets
 
 There are 5 steps to this process:
 
@@ -319,7 +319,7 @@ This will create an empty package.json (which is similar to a `Gemfile`) in your
 ```
 npm install webpack --save-dev
 ```
-This installs Webpack and creates a `node_modules` folder.  This folder contains hundreds of JavaScript dependancies.
+This installs Webpack and creates a `node_modules` folder.  This folder contains hundreds of JavaScript dependencies.
 
 ```
 npm install webpack -g
@@ -336,7 +336,7 @@ Our project does not need all the dependencies in the `node_modules` folder, so 
 
 ##### Step 4.2: Setting up Webpack
 
-Now that we have Webpack, we need to add 3 boiler plate files to configure it. As you add more JavaScript packages you will be updating these files. Again this is similar to updating your Gemfile when you add new gems to a project.
+Now that we have Webpack, we need to add 3 boilerplate files to configure it. As you add more JavaScript packages you will be updating these files. Again this is similar to updating your Gemfile when you add new gems to a project.
 Run `npm view webpack version` if you are unsure which version you have. Add `webpack.config.js` to the root of your project:
 
 For Webpack 1.x versions:
@@ -436,7 +436,7 @@ client_and_server.js  1.61 kB       0  [emitted]  client_and_server
    [0] ./webpack/client_only.js 206 bytes {1} [built]
  ```
 
- Our `client_and_server.js` and `client_only.js` bundles are built and ready to be included in our application. If you look in your `app/assets/javascripts/webpack` folder you should see the two files there. Note that these bundles are empty at the moment as we have not added any JavaScript components yet. We will do that in another step.
+Our `client_and_server.js` and `client_only.js` bundles are built and ready to be included in our application. If you look in your `app/assets/javascripts/webpack` folder you should see the two files there. Note that these bundles are empty at the moment as we have not added any JavaScript components yet. We will do that in another step.
 
 ##### Step 4.4: Adding Webpack bundles to the Rails asset Pipeline
 
@@ -512,7 +512,7 @@ client_and_server.js loaded
 Reactive record prerendered data being loaded: [Object]
 ```
 
-Congratulations you are ready to begin adding javascript packages to your application.
+Congratulations you are ready to begin adding Javascript packages to your application.
 
 
 
@@ -562,7 +562,7 @@ Refresh your browser and you should have a video. How simple was that!
 
 [We will be using ReactBootstrap which is a native React library](https://react-bootstrap.github.io/)
 
-The main purpose for ReactBootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Reactrb is that we already work in beautiful Ruby. To emphasise this point, consider the following:
+The main purpose for ReactBootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Reactrb is that we already work in beautiful Ruby. To emphasize this point, consider the following:
 
 Sample 1 - In HTML (without ReactBootstrap):
 
@@ -638,9 +638,9 @@ module Components
   end
 end
 ```
-Notice that we reference `ReactBoostrap` in ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle.  The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the javascript name space for something that looks either like a component or library of components.  It then defines the appropriate module or component class wrapper in ruby.
+Notice that we reference `ReactBoostrap` in Ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle.  The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the Javascript name space for something that looks either like a component or library of components.  It then defines the appropriate module or component class wrapper in Ruby.
 
-Visit your page and if all is well you will see a clickable button.  However it will not have any styles.  This is because ReactBootstrap does not automatically depend on any particular style sheet, so we will have to supply one.  An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can setup Webpack to do it all for us.
+Visit your page, and if all is well you will see a clickable button.  However it will not have any style.  This is because ReactBootstrap does not automatically depend on any particular style sheet, so we will have to supply one.  An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can get Webpack to do it all for us.
 
 First let's add four Webpack *loaders* using npm:
 ```text
@@ -718,7 +718,7 @@ module.exports = {
 };
 ```
 
-We have setup Webpack to use the style loader for processing a CSS file when one is required.  Because the Bootstrap CSS file will require font face files, we also have 4 font loaders.  Now when any CSS file is required, we will have everything we need neatly packaged up.
+We have setup Webpack to use the style loader for processing a CSS file when one is required.  Because the Bootstrap CSS file will require font face files, we also have 4 font loaders. Now when any CSS file is required, we will have everything we need neatly packaged up.
 
 We are now ready to require CSS files and have Webpack build a complete bundle including the CSS and any fonts referenced.
 
@@ -792,7 +792,7 @@ See with `div.container` we are mixing in CSS style which will compile into `<di
 
 Also notice how I have added an `.on(:click)` event handler to the `MenuItem` component while setting `href: '#'` as this will allow us to handle the event instead of navigating to a new page.
 
-So far we have a very basic application which is looking OK and showing a video. Time to do something a little more interesting. Let's add Post and Comment functionality which will let us explore Reactive Record!
+So far we have a very basic application which is looking OK and showing a video. Time to do something a little more interesting. Let's add Post and Comment functionality which will let us explore ReactiveRecord!
 
 
 
@@ -832,7 +832,7 @@ rails db:migrate
 ##### Step 5.3.2: Making your models accessible to HyperMesh
 
 **HyperMesh** needs to 'see' your models because a representation of them gets compiled into JavaScript along with your **HyperReact** components so they are accessible in your client-side code.
-The convention (though this is choice and you can change this if you prefer) is to create a `public` folder under models and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
+The convention (though this is choice and you can change it if you prefer) is to create a `public` folder under models and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
 
 Move `planevent.rb` to `models/public`
 
@@ -994,7 +994,7 @@ Refresh your browser and you should have your Showcase app working.
 
 ##### Step 5.3.4: Working with Push Notifications and HyperMesh
 
-**HyperMesh** ReactiveRecord part is the data layer between one client and its server. **HyperMesh** also uses push notifications to push changed records to all connected ReactiveRecord clients.
+The **HyperMesh** ReactiveRecord part is the data layer between one client and its server. **HyperMesh** also uses push notifications to push changed records to all connected ReactiveRecord clients.
 
 You need to add an initializer `config/initializers/hyper_mesh.rb`
 
@@ -1011,16 +1011,16 @@ Restart your server, open two browser windows and be amazed to see any new plane
 
 
 
-##### Step 5.3.5: Working with HyperReact Hot-reloader and Opal IRB
+##### Step 5.3.5: Working with HyperReact Hot Reloader and Opal IRB
 
 Before we go any further, let's install two fantastic tools written by Forrest Chang:
 
 + [Opal Hot Reloader](https://github.com/fkchang/opal-hot-reloader)
 + [Opal Console](https://github.com/fkchang/opal-console)
 
-Opal Hot Loader is for pure programmer joy (not having to reload the page to compile your source) and the Opal Console is incredibly useful to test how Ruby code compiles to JavaScript.
+Opal Hot Reloader is for pure programmer joy (not having to reload the page to compile your source) and the Opal Console is incredibly useful to test how Ruby code compiles to JavaScript.
 
-We are also going to add the Foreman gem to run our Rails server and the Hot Loader service for us.
+We are also going to add the Foreman gem to run our Rails server and the Hot Reloader service for us.
 
 Add the following lines to your `gemfile` and run `bundle`:
 
@@ -1045,7 +1045,7 @@ if React::IsomorphicHelpers.on_opal_client?
 end
 ```
 
-Then create a `Procfile` in your Rails app root so the Hot Loader service will start whenever you start your server:
+Then create a `Procfile` in your Rails app root so the Hot Reloader service will start whenever you start your server:
 
 ```text
 #Procfile
@@ -1081,7 +1081,7 @@ Save and you should see the button text changes magically in your browser withou
 ### HyperReact is powered by React
 
 **HyperReact** is powered by React
-**HyperReact** and friends are in most cases simple DSL Ruby wrappers to the underlying native JavaScript libraries and React Components. It is really important to have a solid grip on how these technologies work to complement your understanding of **HyperReact**. Most searches for help on Google will take you to examples written in JSX or ES6 JavaScript but you will learn over time to transalte this to **HyperReact** equivalents. To make headway with **HyperReact** you do need a solid understanding of the underlying philosophy of React and its component based architecture. The 'Thinking in React' tutorial below is an excellent place to start. (Make sure you see the Flux Store Tutorial in **HyperReact** above for an example of how to communicate between grandparent and child components).
+**HyperReact** and friends are in most cases simple DSL Ruby wrappers to the underlying native JavaScript libraries and React Components. It is really important to have a solid grip on how these technologies work to complement your understanding of **HyperReact**. Most searches for help on Google will take you to examples written in JSX or ES6 JavaScript but you will learn over time to translate this into **HyperReact** equivalents. To make headway with **HyperReact** you do need a solid understanding of the underlying philosophy of React and its component based architecture. The 'Thinking in React' tutorial below is an excellent place to start. (Make sure you see the Flux Store Tutorial in **HyperReact** above for an example of how to communicate between grandparent and child components).
 
 + [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)
 + [React](https://facebook.github.io/react/docs/getting-started.html)
