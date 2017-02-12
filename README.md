@@ -800,8 +800,9 @@ So far we have a very basic application which is looking OK and showing a video.
 
 ##### Step 5.3: Working with HyperMesh (ActiveRecord API part)
 
+**HyperMesh** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **HyperMesh** follows the syntax and semantics of ActiveRecord.
 
-**HyperMesh** compiles your ActiveRecord models so they are accessible to the front-end and implements an API based on your models and their associations. Lazy loads just the data that is needed to render a component and is fully integrated with **HyperReact** and paired with **HyperMesh** to push database changes to all connected clients. **HyperMesh** gives you Relay + GraphQL like functionality with a fraction of the effort and complexity (the original idea for ReactiveRecord is credited to Volt and not Relay).
+Read more details about **HyperMesh** here : [HyperMesh ActiveRecord/](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
 
 ##### Step 5.3.1: Creating the models
 
