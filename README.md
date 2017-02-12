@@ -452,7 +452,6 @@ Then edit `app/views/components.rb` and directly after `require 'hyper-react'
 #app/views/components.rb
 
 require 'webpack/client_and_server.js'
-require 'reactrb/auto-import'
 ```
 And remove the following line:
 ```ruby
