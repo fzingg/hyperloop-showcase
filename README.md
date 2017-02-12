@@ -59,7 +59,7 @@ This tutorial requires that Ruby, Rails, NPM and Webpack are installed. Please s
 
 ## Setup
 
-### Step 1: 
+## Step 1: 
 ### Creating a new Rails application
 
 ```
