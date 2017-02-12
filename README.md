@@ -33,9 +33,9 @@ The Showcase application will look like this:
 
 [Step 5: Working with native React components](#step-5)
 
-[Step 6: Working with HyperMesh (ActiveRecord API part)](#step-6)
+[Step 6: Working with HyperMesh and ActiveRecord](#step-6)
 
-[Step 7: Working with Push Notifications and HyperMesh](#step-7)
+[Step 7: Working with HyperMesh and Push Notifications](#step-7)
 
 [Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8)
 
@@ -825,7 +825,7 @@ So far we have a very basic application which is looking OK and showing a video.
 
 
 ## Step 6
-### Working with HyperMesh (ActiveRecord API part)
+### Working with HyperMesh and ActiveRecord
 
 **HyperMesh** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **HyperMesh** follows the syntax and semantics of ActiveRecord.
 
@@ -1021,7 +1021,7 @@ Refresh your browser and you should have your Showcase app working.
 
 
 ## Step 7
-### Working with Push Notifications and HyperMesh
+### Working with HyperMesh and Push Notifications
 
 The **HyperMesh** ReactiveRecord part is the data layer between one client and its server. **HyperMesh** also uses push notifications to push changed records to all connected ReactiveRecord clients.
 
