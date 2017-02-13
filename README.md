@@ -633,7 +633,9 @@ And then we need to `require` it in `webpack/client_and_server.js` by adding thi
 ReactBootstrap = require('react-bootstrap')
 ```
 Run the 
-`webpack` 
+```text
+webpack
+``` 
 command again, and restart your rails server.
 
 If you refresh your browser now and open the JavaScript console we will be able to interact with React-Bootstrap by typing:
@@ -758,7 +760,9 @@ npm install bootstrap --save
 ```
 
 Now run 
-`webpack` 
+```text
+webpack
+``` 
 to update our bundles, and restart your server. Our button is now properly styled you should be rewarded with a nice Bootstrap styled green Success Button.
 
 Now that everything is loaded, let's update our component to use a few more of the Bootstrap components. Update your Show component so that it looks like this:
@@ -835,7 +839,9 @@ require('bootstrap/dist/css/bootstrap.min.css');
 ```
 
 Then run 
-`webpack`
+```text
+webpack
+```
 
 Restart your Rails app and refresh your browser.
 
