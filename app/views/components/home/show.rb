@@ -11,7 +11,7 @@ module Components
           ReactBootstrap::Navbar(bsStyle: :inverse) do
             ReactBootstrap::Nav() do
               ReactBootstrap::NavbarBrand() do
-                a(href: '#') { 'Reactrb Showcase' }
+                a(href: '#') { 'HyperLoop Showcase' }
               end
               ReactBootstrap::NavDropdown(
                 eventKey: 1,

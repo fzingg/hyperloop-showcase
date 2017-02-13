@@ -75,7 +75,7 @@ module Components
 
 
         ReactBootstrap::Button(bsStyle: :primary) do
-          "Create an new event"
+          "Create a new event"
         end.on(:click) { save_new_planevent }
       
       end
