@@ -583,7 +583,7 @@ Refresh your browser and you should have a video. How simple was that!
 
 [We will be using React-Bootstrap which is a native React library](https://react-bootstrap.github.io/)
 
-The main purpose for React-Bootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Reactrb is that we already work in beautiful Ruby. To emphasize this point, consider the following:
+The main purpose for React-Bootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Hyperloop is that we already work in beautiful Ruby. To emphasize this point, consider the following:
 
 Sample 1 - In HTML (without React-Bootstrap):
 
@@ -598,19 +598,19 @@ Sample 2 - In JSX (with React-Bootstrap components):
 	  Something
 	</Button>
 
-Sample 3 - In Reactrb (without React-Bootstrap):
+Sample 3 - In Hyperloop (without React-Bootstrap):
 
 	button.btn_success.btn_sm {'Something'}.on(:click) do
 		someMethod
 	end
 
-Sample 4 - In Reactrb (with React-Bootstrap):
+Sample 4 - In Hyperloop (with React-Bootstrap):
 
 	React-Bootstrap::Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
 		someMethod
 	end
 
-As you can see, sample 3 & 4 are not that different. As a Reactrb developer, I actually prefer sample 3, but if I were a JavaScript or JSX developer I would completely understand the advantage of abstracting Bootstrap CSS into React Components so I don't have to work directly with CSS and JavaScript. This is not the case with **HyperReact**, however, as CSS classes are added to HTML elements with simple dot notation:
+As you can see, sample 3 & 4 are not that different. As a Hyperloop developer, I actually prefer sample 3, but if I were a JavaScript or JSX developer I would completely understand the advantage of abstracting Bootstrap CSS into React Components so I don't have to work directly with CSS and JavaScript. This is not the case with **HyperReact**, however, as CSS classes are added to HTML elements with simple dot notation:
 
 	span.pull_right {}
 
@@ -783,7 +783,7 @@ module Components
           ReactBootstrap::Navbar(bsStyle: :inverse) do
             ReactBootstrap::Nav() do
               ReactBootstrap::NavbarBrand() do
-                a(href: '#') { 'Reactrb Showcase' }
+                a(href: '#') { 'Hyperloop Showcase' }
               end
               ReactBootstrap::NavDropdown(
                 eventKey: 1,
