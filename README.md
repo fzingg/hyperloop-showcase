@@ -632,7 +632,9 @@ And then we need to `require` it in `webpack/client_and_server.js` by adding thi
 
 ReactBootstrap = require('react-bootstrap')
 ```
-Run the `webpack` command again, and restart your rails server.
+Run the 
+`webpack` 
+command again, and restart your rails server.
 
 If you refresh your browser now and open the JavaScript console we will be able to interact with React-Bootstrap by typing:
 
@@ -755,7 +757,9 @@ And install the Bootstrap package
 npm install bootstrap --save
 ```
 
-Now run `webpack` to update our bundles, and restart your server. Our button is now properly styled you should be rewarded with a nice Bootstrap styled green Success Button.
+Now run 
+`webpack` 
+to update our bundles, and restart your server. Our button is now properly styled you should be rewarded with a nice Bootstrap styled green Success Button.
 
 Now that everything is loaded, let's update our component to use a few more of the Bootstrap components. Update your Show component so that it looks like this:
 
@@ -815,9 +819,25 @@ Also notice how I have added an `.on(:click)` event handler to the `MenuItem` co
 
 So far we have a very basic application which is looking OK and showing a video. Time to do something a little more interesting. Let's add Post and Comment functionality which will let us explore ReactiveRecord!
 
+##### Step 5.3: Using a Bootstrap theme
 
+We are going to replace the Bootstrap original theme by the Bootswatch `Superhero` theme.
 
+Go to the theme webpage : [https://bootswatch.com/superhero/](https://bootswatch.com/superhero/) and download the `bootstrap.min.css` file.
 
+Copy this files into `node-modules/bootstrap/dist/css`
+
+Modify the `webpack/client_only.js` file
+```javascript
+//webpack/client_only.js
+
+require('bootstrap/dist/css/bootstrap.min.css');
+```
+
+Then run 
+`webpack`
+
+Restart your Rails app and refresh your browser.
 
 ## Step 6: Working with HyperMesh and ActiveRecord
 
