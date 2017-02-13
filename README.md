@@ -19,7 +19,7 @@ The Showcase application will look like this:
   changed data between all connected clients
 + [HyperReact Hot-Reloader and Opal IRB](https://github.com/fkchang/opal-hot-reloader) for programmer joy and hot-loading with developing
 
-
+ 
 ## Index
 [Introduction](#introduction)
 
