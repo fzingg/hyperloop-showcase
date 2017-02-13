@@ -174,9 +174,9 @@ Assuming you are using the Ruby syntax (application.rb), in `assets/javascript/a
 
 //= require 'components'
 //= require 'react_ujs'
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
+//= require 'jquery'
+//= require 'jquery_ujs'
+//= require 'turbolinks'
 //= require_tree .
 
 Opal.load('components');
