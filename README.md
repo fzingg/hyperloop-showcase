@@ -763,7 +763,7 @@ Now run
 ```text
 webpack
 ``` 
-to update our bundles, and restart your server. Our button is now properly styled you should be rewarded with a nice Bootstrap styled green Success Button.
+to update our bundles, and restart your server. Our button is now properly styled, and you should be rewarded with a nice Bootstrap-styled green Success Button.
 
 Now that everything is loaded, let's update our component to use a few more of the Bootstrap components. Update your Show component so that it looks like this:
 
@@ -825,11 +825,11 @@ So far we have a very basic application which is looking OK and showing a video.
 
 ##### Step 5.3: Using a Bootstrap theme
 
-We are going to replace the Bootstrap original theme by the Bootswatch `Superhero` theme.
+We are going to replace the Bootstrap original theme with the Bootswatch `Superhero` theme.
 
 Go to the theme webpage : [https://bootswatch.com/superhero/](https://bootswatch.com/superhero/) and download the `bootstrap.min.css` file.
 
-Copy this files into `node-modules/bootstrap/dist/css`
+Copy this file into `node-modules/bootstrap/dist/css`
 
 Modify the `webpack/client_only.js` file
 ```javascript
