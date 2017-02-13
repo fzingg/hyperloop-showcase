@@ -827,15 +827,16 @@ So far we have a very basic application which is looking OK and showing a video.
 
 We are going to replace the Bootstrap original theme with the Bootswatch `Superhero` theme.
 
-Go to the theme webpage : [https://bootswatch.com/superhero/](https://bootswatch.com/superhero/) and download the `bootstrap.min.css` file.
-
-Copy this file into `node-modules/bootstrap/dist/css`
+Install the bootswatch package with npm :
+```
+npm install bootswatch
+```
 
 Modify the `webpack/client_only.js` file
 ```javascript
 //webpack/client_only.js
 
-require('bootstrap/dist/css/bootstrap.min.css');
+require('bootswatch/superhero/bootstrap.min.css');
 ```
 
 Then run 
