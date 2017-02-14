@@ -10,7 +10,7 @@ The Showcase application will look like this:
 
 ### Technologies highlighted in this Showcase application
 
-+ For the back end we are using [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/)
++ [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/) for the back end
 + [NPM](https://www.npmjs.com/) and [Webpack](https://webpack.github.io/) to manage front end assets
 + [HyperRails](https://github.com/ruby-hyperloop/hyper-rails) to install [HyperReact](https://github.com/ruby-hyperloop/hyper-react) and Opal in Rails 4.x or 5.x
 + [HyperReact](https://github.com/ruby-hyperloop/hyper-react) to use [React](https://facebook.github.io/react/) with Rails and to write reactive UI components with Ruby's elegance
@@ -101,13 +101,13 @@ You should see the Rails Welcome aboard page. Great, Rails is now installed. Let
 
 ## Step 2: Adding HyperReact and HyperMesh
 
-There are 2 ways do achieve that:
+There are 2 ways to achieve that:
 
 + Using **HyperLoop** installation generator
 OR
 + Manually.
 
-In this tutorial we advise you to follow the manual way, so you can see what's happening and can be sure to have all gems versions identical to those used in this tutorial.
+In this tutorial we will follow the manual way, so you can see what's happening and can be sure to have all gem versions identical to those used in this tutorial.
 
 If you want to see the automatic way for the future you can go to the official **HyperLoop web page**: [HyperLoop installation with Rails](http://ruby-hyperloop.io/installation/#with-rails)
 
