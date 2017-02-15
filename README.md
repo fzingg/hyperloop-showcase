@@ -106,7 +106,7 @@ There are 2 ways to achieve that:
 + Using **HyperLoop** installation generator
 + Manually.
 
-### Automatic installation of HyperReact and HyperMesh
+### > Automatic installation of HyperReact and HyperMesh
 
 Add the **HyperRails** gem, which is a set of generators which will easily configure the other **Hyperloop** gems :
 
@@ -152,7 +152,7 @@ require_tree './components'
 
 If you are interested in the steps the generator has completed, please see the following section.
 
-### Manual installation of HyperReact and HyperMesh
+### > Manual installation of HyperReact and HyperMesh
 
 ##### Step 2.1: Add the gems
 
