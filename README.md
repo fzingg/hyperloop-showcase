@@ -104,12 +104,53 @@ You should see the Rails Welcome aboard page. Great, Rails is now installed. Let
 There are 2 ways to achieve that:
 
 + Using **HyperLoop** installation generator
-OR
 + Manually.
 
-In this tutorial we will follow the manual way, so you can see what's happening and can be sure to have all gem versions identical to those used in this tutorial.
+#### Automatic installation of HyperReact and HyperMesh
 
-If you want to see the automatic way for the future you can go to the official **HyperLoop web page**: [HyperLoop installation with Rails](http://ruby-hyperloop.io/installation/#with-rails)
+Add the HyperRails gem, which is a set of generators which will easily configure the other Hyperloop gems :
+
+```ruby
+  #Gemfile
+  
+  gem 'hyper-rails'
+
+```
+Then run
+```
+bundle install
+```
+Now let’s get the **HyperRails** generator to install **Hyperloop** :
+```
+rails g hyperloop:install
+bundle update
+```
+**HyperRails** will add all the necessary Gem’s and configuration to our new Rails app.
+
+We still need to modify the `app/views/components.rb` and add the 2 lines `require 'reactrb/auto-import'` and `require 'react/react-source'` :
+```ruby
+#app/views/components.rb
+
+require 'opal'
+
+require 'reactrb/auto-import'
+require 'react/react-source'
+require 'hyper-react'
+if React::IsomorphicHelpers.on_opal_client?
+  require 'opal-jquery'
+  require 'browser'
+  require 'browser/interval'
+  require 'browser/delay'
+  # add any additional requires that can ONLY run on client here
+end
+
+require 'hyper-mesh'
+require 'models'
+
+require_tree './components'
+```
+
+If you are interested in the steps the generator has completed, please see the following ection.
 
 #### Manual installation of HyperReact and HyperMesh
 
@@ -117,6 +158,8 @@ If you want to see the automatic way for the future you can go to the official *
 
 in your `Gemfile`
 ```ruby
+  #Gemfile
+
 	gem 'react-rails', '1.4.2'
 	gem 'hyper-rails', '0.4.1'
 	gem 'opal-rails', '0.9.1'
