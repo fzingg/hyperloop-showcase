@@ -236,9 +236,7 @@ Finally you will need to update your `application.rb` to ensure everything wor
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.eager_load_paths += %W(#{config.root}/app/models/public)
-    config.eager_load_paths += %W(#{config.root}/app/views/components)
     config.autoload_paths += %W(#{config.root}/app/models/public)
-    config.autoload_paths += %W(#{config.root}/app/views/components)
     config.assets.paths << ::Rails.root.join('app', 'models').to_s
   end
 ...
@@ -924,26 +922,11 @@ rails db:migrate
 ##### Step 6.2: Making your models accessible to HyperMesh
 
 **HyperMesh** needs to 'see' your models because a representation of them gets compiled into JavaScript along with your **HyperReact** components so they are accessible in your client-side code.
-The convention (though this is choice and you can change it if you prefer) is to create a `public` folder under models and then provide a linkage file which will `require_tree` your models when compiling `components.rb`.
 
 Move `planevent.rb` to `models/public`
 
 For Rails 5.x *only*, move `app/models/application_record.rb` to `app/models/public/`
 
-
-Next create `_react_public_models.rb` in your `models` folder:
-```ruby
-# models/_react_public_models.rb
-
-require_tree './public'
-```
-
-Finally add a line to `views/components.rb`:
-```ruby
-# views/components.rb
-
-require '_react_public_models'
-```
 
 ##### Step 6.3: Accessing your models in HyperReact components
 
@@ -1094,7 +1077,7 @@ You need to add an initializer `config/initializers/hyper_mesh.rb`
 #config/initializers/hyper_mesh.rb
 
 HyperMesh.configuration do |config|
-  config.transport = :action_cable
+  config.transport = :simple_poller
 end
 ```
 

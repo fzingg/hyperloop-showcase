@@ -16,6 +16,4 @@ end
 require 'hyper-mesh'
 require 'models'
 
-require '_react_public_models'
-
 require_tree './components'
