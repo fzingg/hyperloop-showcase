@@ -6,7 +6,7 @@ This Showcase application will mix native React and **HyperReact** components, b
 
 The Showcase application will look like this:
 
-![Screen](public/screen.png)
+![Screen](https://cdn.rawgit.com/fzingg/hyperloop-showcase/85957e95/public/screen.png)
 
 ### Technologies highlighted in this Showcase application
 
