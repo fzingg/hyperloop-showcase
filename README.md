@@ -653,7 +653,7 @@ Sample 3 - In Hyperloop (without React-Bootstrap):
 
 Sample 4 - In Hyperloop (with React-Bootstrap):
 
-	React-Bootstrap::Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
+	ReactBootstrap::Button(bsStyle: 'success' bsSize: "small") {'Something'}.on(:click) do
 		someMethod
 	end
 
