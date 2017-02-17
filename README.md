@@ -8,6 +8,8 @@ The Showcase application will look like this:
 
 ![Screen](https://cdn.rawgit.com/fzingg/hyperloop-showcase/85957e95/public/screen.png)
 
+You can have an Online preview of the final App here : [http://hyperloop-showcase.pixagency.com](http://hyperloop-showcase.pixagency.com)
+
 ### Technologies highlighted in this Showcase application
 
 + [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/) for the back end
@@ -338,15 +340,19 @@ Add a route to your `routes.rb`
 
 root 'home#show'
 ```
-Create the file `app/controllers/home_controller.rb` and add a show method. This will render the component using the render_component helper.
+Create the file `app/controllers/home_controller.rb` and add a show method. This will render the `/views/home/show.html.erb` page.
 ```ruby
 #app/controllers/home_controller.rb
 
 class HomeController < ApplicationController
     def show
-		render_component
     end
 end
+```
+
+Create the file `app/views/home/show.html.erb` and add the `react_component` helper for rendering the `Home::Show` component :
+```ruby
+<%= react_component 'Home::Show', {}, { prerender: false } %>
 ```
 
 Fire up the server with 
