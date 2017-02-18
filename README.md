@@ -1,5 +1,16 @@
 # HyperLoop Showcase
 
+## Preamble
+
+This tutorial is the first chapter of series containing 4 chapters :
+
++ Chapter 1 : [Hyperloop Showcase](https://github.com/fzingg/hyperloop-showcase)
++ Chapter 2 : [Hyperloop Showcase Template](https://github.com/fzingg/hyperloop-showcase-template)
++ Chapter 3 : [Hyperloop Showcase with HEROKU (Debug way)](https://github.com/fzingg/hyperloop-showcase-heroku)
++ Chapter 4 : [Hyperloop Showcase with HEROKU (Fast way)](https://github.com/fzingg/hyperloop-showcase-template-heroku)
+
+## General introduction
+
 This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, React-Bootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications) and other associated technologies.
 
 This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using React-Bootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
