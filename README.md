@@ -9,7 +9,7 @@ This tutorial is the first chapter of a serie containing 4 chapters :
 + Chapter 3 : [Hyperloop Showcase with HEROKU (Debug way)](https://github.com/fzingg/hyperloop-showcase-heroku) 
 + Chapter 4 : [Hyperloop Showcase with HEROKU (Fast way)](https://github.com/fzingg/hyperloop-showcase-template-heroku) 
 
-For more information about [HyperLoop Web site](http://ruby-hyperloop.io/)
+For more information : [HyperLoop Web site](http://ruby-hyperloop.io/)
 
 ## General introduction
 
