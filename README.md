@@ -9,6 +9,8 @@ This tutorial is the first chapter of a serie containing 4 chapters :
 + Chapter 3 : [Hyperloop Showcase with HEROKU (Debug way)](https://github.com/fzingg/hyperloop-showcase-heroku) 
 + Chapter 4 : [Hyperloop Showcase with HEROKU (Fast way)](https://github.com/fzingg/hyperloop-showcase-template-heroku) 
 
+For more information about [HyperLoop Web site](http://ruby-hyperloop.io/)
+
 ## General introduction
 
 This is a simple Rails application showcasing **Hyperloop** (**Hyperloop Components** and **Hyperloop Models** in particular), Opal, NPM, Webpack, React-Bootstrap and other associated technologies.
@@ -38,7 +40,7 @@ You can have an Online preview of the final App here : [http://hyperloop-showcas
 
 [Step 1: Creating a new Rails application](#step-1-creating-a-new-rails-application)
 
-[Step 2: Adding Hyperloop Components and Hyperloop Models](#step-2-adding-hyperloopcomponents-and-hyperloopmodels)
+[Step 2: Adding Hyperloop Components and Hyperloop Models](#step-2-adding-hyperloop-components-and-hyperloop-models)
 
 [Step 3: Creating the first components](#step-3-creating-the-first-components)
 
@@ -46,9 +48,9 @@ You can have an Online preview of the final App here : [http://hyperloop-showcas
 
 [Step 5: Working with native React components](#step-5-working-with-native-react-components)
 
-[Step 6: Working with Hyperloop Models and ActiveRecord](#step-6-working-with-hyperloopmodels-and-activerecord)
+[Step 6: Working with Hyperloop Models and ActiveRecord](#step-6-working-with-hyperloop-models-and-activerecord)
 
-[Step 7: Working with Hyperloop Models and Push Notifications](#step-7-working-with-hypermesh-and-push-notifications)
+[Step 7: Working with Hyperloop Models and Push Notifications](#step-7-working-with-hyperloop-models-and-push-notifications)
 
 [Step 8: Working with Opal Hot Reloader and Opal IRB](#step-8-working-with-opal-hot-reloader-and-opal-irb)
 
@@ -1103,7 +1105,7 @@ Restart your server, open two browser windows and be amazed to see any new plane
 
 
 
-## Step 8: Working with Hyperloop Models Hot Reloader and Opal IRB
+## Step 8: Working with Opal Hot Reloader and Opal IRB
 
 Before we go any further, let's install two fantastic tools written by Forrest Chang:
 
