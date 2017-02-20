@@ -11,9 +11,10 @@ This tutorial is the first chapter of a serie containing 4 chapters :
 
 ## General introduction
 
-This is a simple Rails application showcasing **HyperReact** (a wrapper for the React.js library for creating user interfaces), Opal, NPM, Webpack, React-Bootstrap, **HyperMesh** (gives your **HyperReact** components CRUD access to your server-side ActiveRecord models and implements push notifications) and other associated technologies.
+This is a simple Rails application showcasing **Hyperloop** (**Hyperloop Components** and **Hyperloop Models** in particular), Opal, NPM, Webpack, React-Bootstrap and other associated technologies.
 
-This Showcase application will mix native React and **HyperReact** components, be styled by Bootstrap CSS (using React-Bootstrap), display a video (using a native React component) and use **HyperMesh** to handle data for an Events feed app.
+This Showcase application will mix native React components and **Hyperloop Components**, be styled by Bootstrap CSS (using React-Bootstrap), display a video (using a native React component) and use **Hyperloop Models** to handle data for an Events feed app.
+
 
 The Showcase application will look like this:
 
@@ -24,13 +25,12 @@ You can have an Online preview of the final App here : [http://hyperloop-showcas
 ### Technologies highlighted in this Showcase application
 
 + [Rails 5.0.1](http://rubyonrails.org/) with [Ruby 2.3.1](https://www.ruby-lang.org/en/news/2016/04/26/ruby-2-3-1-released/) for the back end
++ [Hyperloop Rails installer](https://github.com/ruby-hyperloop/hyper-rails) to install **Hyperloop** and Opal in Rails 4.x or 5.x
++ [Hyperloop Components](https://github.com/ruby-hyperloop/hyper-react) to use [React](https://facebook.github.io/react/) with Rails and to write reactive UI components with Ruby's elegance
++ [Hyperloop Models](https://github.com/ruby-hyperloop/hyper-mesh) between Rails models and the front end and to magically push changed data between all connected clients
++ [Opal Hot-Reloader](https://github.com/fkchang/opal-hot-reloader) for programmer joy and hot-loading with developing
++ [React-Bootstrap](https://react-bootstrap.github.io/) to show how to use native React components with [Hyperloop Components](https://github.com/ruby-hyperloop/hyper-react)
 + [NPM](https://www.npmjs.com/) and [Webpack](https://webpack.github.io/) to manage front end assets
-+ [HyperRails](https://github.com/ruby-hyperloop/hyper-rails) to install [HyperReact](https://github.com/ruby-hyperloop/hyper-react) and Opal in Rails 4.x or 5.x
-+ [HyperReact](https://github.com/ruby-hyperloop/hyper-react) to use [React](https://facebook.github.io/react/) with Rails and to write reactive UI components with Ruby's elegance
-+ [React-Bootstrap](https://react-bootstrap.github.io/) to show how to use native React components in [HyperReact](https://github.com/ruby-hyperloop/hyper-react)
-+ [HyperMesh](https://github.com/ruby-hyperloop/hyper-mesh) between Rails models and the front end and to magically push
-  changed data between all connected clients
-+ [HyperReact Hot-Reloader and Opal IRB](https://github.com/fkchang/opal-hot-reloader) for programmer joy and hot-loading with developing
 
  
 ## Index
@@ -38,7 +38,7 @@ You can have an Online preview of the final App here : [http://hyperloop-showcas
 
 [Step 1: Creating a new Rails application](#step-1-creating-a-new-rails-application)
 
-[Step 2: Adding HyperReact and HyperMesh](#step-2-adding-hyperreact-and-hypermesh)
+[Step 2: Adding Hyperloop Components and Hyperloop Models](#step-2-adding-hyperloopcomponents-and-hyperloopmodels)
 
 [Step 3: Creating the first components](#step-3-creating-the-first-components)
 
@@ -46,21 +46,21 @@ You can have an Online preview of the final App here : [http://hyperloop-showcas
 
 [Step 5: Working with native React components](#step-5-working-with-native-react-components)
 
-[Step 6: Working with HyperMesh and ActiveRecord](#step-6-working-with-hypermesh-and-activerecord)
+[Step 6: Working with Hyperloop Models and ActiveRecord](#step-6-working-with-hyperloopmodels-and-activerecord)
 
-[Step 7: Working with HyperMesh and Push Notifications](#step-7-working-with-hypermesh-and-push-notifications)
+[Step 7: Working with Hyperloop Models and Push Notifications](#step-7-working-with-hypermesh-and-push-notifications)
 
-[Step 8: Working with HyperReact Hot Reloader and Opal IRB](#step-8-working-with-hyperreact-hot-reloader-and-opal-irb)
+[Step 8: Working with Opal Hot Reloader and Opal IRB](#step-8-working-with-opal-hot-reloader-and-opal-irb)
 
 [Further Reading](#further-reading)
 
 ## Introduction
 
-### Introductions to **HyperReact**
-+ [An overview of HyperReact (formerly Reactrb) by Mitch VanDuyn](http://slides.com/mitchvanduyn/deck-1-3#/)
+### Introductions to **Hyperloop**
++ [An overview of Hyperloop Components (formerly Reactrb) by Mitch VanDuyn](http://slides.com/mitchvanduyn/deck-1-3#/)
 + [Power of React-js with the joy of Ruby by Forrest Chang](http://www.slideshare.net/fkchang/reactrb-all-the-power-of-reactjs-with-all-the-joy-of-ruby)
 
-### HyperReact Help and Questions
+### Hyperloop Help and Questions
 
 + [Gitter.im](https://gitter.im/ruby-hyperloop/chat) for general questions, discussion, and interactive help.
 + [Stack Overflow](http://stackoverflow.com/questions/tagged/reactrb) tag `reactrb` for specific problems.
@@ -73,7 +73,7 @@ Ruby libraries are distributed as gems, and are managed in your Rails app using 
 
 In the JavaScript world things are still evolving but I have found that the easiest way to manage JavaScript libraries is using NPM (Node Package Manager) and Webpack. Pretty much every front end library is packaged with NPM these days so it is easy to get help and most things just work.
 
-Happily NPM, Webpack, Rails, and **HyperReact** can all play together very nicely.
+Happily NPM, Webpack, Rails, and **Hyperloop** can all play together very nicely.
 
 + [NPM](https://www.npmjs.com/)
 + [Webpack](https://www.npmjs.com/package/webpack)
@@ -112,14 +112,14 @@ And in your browser
 
 You should see the Rails Welcome aboard page. Great, Rails is now installed. Let's get started with the interesting stuff.
 
-## Step 2: Adding HyperReact and HyperMesh
+## Step 2: Adding Hyperloop Components and Hyperloop Models
 
 There are 2 ways to achieve that:
 
 + Using **HyperLoop** installation generator
 + Manually.
 
-### > Automatic installation of HyperReact and HyperMesh
+### > Automatic installation of Hyperloop Components and Hyperloop Models
 
 Add the **HyperRails** gem, which is a set of generators which will easily configure the other **Hyperloop** gems :
 
@@ -165,7 +165,7 @@ require_tree './components'
 
 If you are interested in the steps the generator has completed, please see the following section.
 
-### > Manual installation of HyperReact and HyperMesh
+### > Manual installation of Hyperloop Components and Hyperloop Models
 
 ##### Step 2.1: Add the gems
 
@@ -597,7 +597,7 @@ Congratulations you are ready to begin adding Javascript packages to your applic
 
 ## Step 5: Working with native React components
 
-Now we can reap the rewards of all the hard work above. We have everything setup to easily add front end components and work with them in **HyperReact**. Let's jump in and add a native React component that plays a video.
+Now we can reap the rewards of all the hard work above. We have everything setup to easily add front end components and work with them in **Hyperloop**. Let's jump in and add a native React component that plays a video.
 
 ##### Step 5.1: Adding a video player to your site
 
@@ -641,7 +641,7 @@ Refresh your browser and you should have a video. How simple was that!
 
 [We will be using React-Bootstrap which is a native React library](https://react-bootstrap.github.io/)
 
-The main purpose for React-Bootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about Hyperloop is that we already work in beautiful Ruby. To emphasize this point, consider the following:
+The main purpose for React-Bootstrap is that it abstracts away verbose HTML & CSS code into React components which makes it a lot cleaner for React JSX developers. One of the very lovely things about **Hyperloop** is that we already work in beautiful Ruby. To emphasize this point, consider the following:
 
 Sample 1 - In HTML (without React-Bootstrap):
 
@@ -668,7 +668,7 @@ Sample 4 - In Hyperloop (with React-Bootstrap):
 		someMethod
 	end
 
-As you can see, sample 3 & 4 are not that different. As a Hyperloop developer, I actually prefer sample 3, but if I were a JavaScript or JSX developer I would completely understand the advantage of abstracting Bootstrap CSS into React Components so I don't have to work directly with CSS and JavaScript. This is not the case with **HyperReact**, however, as CSS classes are added to HTML elements with simple dot notation:
+As you can see, sample 3 & 4 are not that different. As a Hyperloop developer, I actually prefer sample 3, but if I were a JavaScript or JSX developer I would completely understand the advantage of abstracting Bootstrap CSS into React Components so I don't have to work directly with CSS and JavaScript. This is not the case with **Hyperloop**, however, as CSS classes are added to HTML elements with simple dot notation:
 
 	span.pull_right {}
 
@@ -678,7 +678,7 @@ which compiles to (note the conversion from _ to -)
 
 So I hear you ask: why if I prefer the non-React-Bootstrap syntax why am worrying about React-Bootstrap? For one very simple reason: components like Navbar and Modal that require `bootstrap.js` will not work with React on its own, so without the React-Bootstrap project you would need to implement all that functionality yourself. The React-Bootstrap project has re-implemented this functionality as React components.
 
-Let's implement a Navbar in this project using React-Bootstrap in **HyperReact**. First, we need to install Bootstrap and React-Bootstrap:
+Let's implement a Navbar in this project using React-Bootstrap in **Hyperloop Components**. First, we need to install Bootstrap and React-Bootstrap:
 
 	npm install bootstrap react-bootstrap --save
 
@@ -721,7 +721,7 @@ module Components
   end
 end
 ```
-Notice that we reference `ReactBoostrap` in Ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle. The first time **HyperReact** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the Javascript name space for something that looks either like a component or library of components. It then defines the appropriate module or component class wrapper in Ruby.
+Notice that we reference `ReactBoostrap` in Ruby using the same identifier that was in the require statement in our `client_and_server.js` Webpack bundle. The first time **Hyperloop Components** hits the `ReactBootstrap` constant it will not be defined. This triggers a search of the Javascript name space for something that looks either like a component or library of components. It then defines the appropriate module or component class wrapper in Ruby.
 
 Visit your page, and if all is well you will see a clickable button. However it will not have any style. This is because React-Bootstrap does not automatically depend on any particular style sheet, so we will have to supply one. An easy way to do this is to just copy the CSS file from the Bootstrap repo, and stuff it in our rails assets directory, however with a little upfront work we can get Webpack to do it all for us.
 
@@ -904,11 +904,11 @@ webpack
 
 Restart your Rails app and refresh your browser.
 
-## Step 6: Working with HyperMesh and ActiveRecord
+## Step 6: Working with Hyperloop Models and ActiveRecord
 
-**HyperMesh** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **HyperMesh** follows the syntax and semantics of ActiveRecord.
+**Hyperloop Models** uses a large subset of the ActiveRecord API modified only when necessary to accommodate the asynchronous nature of the client. You can access your ActiveRecord models just like you would in models, controllers, or in ERB or HAML view templates. As much as possible, **Hyperloop Models** follows the syntax and semantics of ActiveRecord.
 
-Read more details about **HyperMesh** here: [HyperMesh ActiveRecord](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
+Read more details about **Hyperloop Models** here: [Hyperloop Models ActiveRecord](http://ruby-hyperloop.io/docs/hypermesh_active_record/)
 
 ##### Step 6.1: Creating the models
 
@@ -936,16 +936,16 @@ Now run the migration:
 rails db:migrate
 ```
 
-##### Step 6.2: Making your models accessible to HyperMesh
+##### Step 6.2: Making your models accessible to Hyperloop Models
 
-**HyperMesh** needs to 'see' your models because a representation of them gets compiled into JavaScript along with your **HyperReact** components so they are accessible in your client-side code.
+**Hyperloop Models** needs to 'see' your models because a representation of them gets compiled into JavaScript along with your **Hyperloop Components** so they are accessible in your client-side code.
 
 Move `planevent.rb` to `models/public`
 
 For Rails 5.x *only*, move `app/models/application_record.rb` to `app/models/public/`
 
 
-##### Step 6.3: Accessing your models in HyperReact components
+##### Step 6.3: Accessing your models in HyperReact Components
 
 To get started, let's create a new component which will display a list of Events under the video:
 
@@ -959,7 +959,7 @@ div.container do
 end
 ```
 
-Note that to place a **HyperReact** component you either need to include ( ) or { }, so `planeventsList()` or `PlaneventsList { }` would be valid but just `PlaneventsList` would not.
+Note that to place a **HyperReact Components** you either need to include ( ) or { }, so `planeventsList()` or `PlaneventsList { }` would be valid but just `PlaneventsList` would not.
 
 Next let's create the `PlaneventsList` component:
 ```ruby
@@ -1078,15 +1078,15 @@ Note how we are binding the state variable `new_planevent` to the `FormContro
 Also see that we are saving the new `planevent` such that ReactiveRecord's save returns a promise. This means that the block after save is only evaluated when it returns, yet React would have moved on to the rest of the code.
 
 Finally note that there is no code which checks to see if there are new planevents -- the list of `Planevents` remains magically up-to-date.
-Welcome to the wonderful world of **HyperReact** and **HyperMesh**!
+Welcome to the wonderful world of **Hyperloop Components** and **Hyperloop Models**!
 
 Refresh your browser and you should have your Showcase app working.
 
 
 
-## Step 7: Working with HyperMesh and Push Notifications
+## Step 7: Working with Hyperloop Models and Push Notifications
 
-The **HyperMesh** ReactiveRecord part is the data layer between one client and its server. **HyperMesh** also uses push notifications to push changed records to all connected ReactiveRecord clients.
+The **Hyperloop Models** ReactiveRecord part is the data layer between one client and its server. **Hyperloop Models** also uses push notifications to push changed records to all connected ReactiveRecord clients.
 
 You need to add an initializer `config/initializers/hyper_mesh.rb`
 
@@ -1103,7 +1103,7 @@ Restart your server, open two browser windows and be amazed to see any new plane
 
 
 
-## Step 8: Working with HyperReact Hot Reloader and Opal IRB
+## Step 8: Working with Hyperloop Models Hot Reloader and Opal IRB
 
 Before we go any further, let's install two fantastic tools written by Forrest Chang:
 
@@ -1165,14 +1165,14 @@ Save and you should see the button text change magically in your browser without
 
 + [HyperLoop Web site](http://ruby-hyperloop.io/)
 
-### Other HyperReact tutorials and examples
-+ [Getting started with HyperReact and Rails](http://ruby-hyperloop.io/tutorials/hyperreact_with_rails/)
+### Other Hyperloop tutorials and examples
++ [Getting started with Hyperloop and Rails](http://ruby-hyperloop.io/tutorials/hyperreact_with_rails/)
 + [Chat Demo App](http://ruby-hyperloop.io/tutorials/chat_app/)
 + [Flux Store Tutorial in HyperReact](http://ruby-hyperloop.io/tutorials/flux_store/)
 + [HyperReact, NPM and Webpack](http://ruby-hyperloop.io/tutorials/hyperreact_with_webpack/)
 
 
-### HyperReact is powered by React
+### Hyperloop Components is powered by React
 
 **HyperReact** is powered by React
 **HyperReact** and friends are in most cases simple DSL Ruby wrappers to the underlying native JavaScript libraries and React Components. It is really important to have a solid grip on how these technologies work to complement your understanding of **HyperReact**. Most searches for help on Google will take you to examples written in JSX or ES6 JavaScript but you will learn over time to translate this into **HyperReact** equivalents. To make headway with **HyperReact** you do need a solid understanding of the underlying philosophy of React and its component based architecture. The 'Thinking in React' tutorial below is an excellent place to start. (Make sure you see the Flux Store Tutorial in **HyperReact** above for an example of how to communicate between grandparent and child components).
@@ -1185,7 +1185,7 @@ Save and you should see the button text change magically in your browser without
 
 ### Opal under the covers
 
-**HyperReact** is a DSL wrapper of React which uses Opal to compile Ruby code to ES5 native JavaScript. If you have not used Opal before then you should at a minimum read the excellent guides as they will teach you enough to get you started with **HyperReact**.
+**Hyperloop Components** is a DSL wrapper of React which uses Opal to compile Ruby code to ES5 native JavaScript. If you have not used Opal before then you should at a minimum read the excellent guides as they will teach you enough to get you started with **Hyperloop Components**.
 
 + [Opal](http://opalrb.org/)
 + [Opal Guides](http://opalrb.org/docs/guides/v0.9.2/index.html)
