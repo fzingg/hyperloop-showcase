@@ -2,14 +2,14 @@
 
 ## Preamble
 
-This tutorial is the first chapter of a serie containing 4 chapters :
+This tutorial is the first in a series of four:
 
-+ Chapter 1 : [Hyperloop Showcase](https://github.com/fzingg/hyperloop-showcase) 
-+ Chapter 2 : [Hyperloop Showcase Template](https://github.com/fzingg/hyperloop-showcase-template) 
-+ Chapter 3 : [Hyperloop Showcase with HEROKU (Debug way)](https://github.com/fzingg/hyperloop-showcase-heroku) 
-+ Chapter 4 : [Hyperloop Showcase with HEROKU (Fast way)](https://github.com/fzingg/hyperloop-showcase-template-heroku) 
++ Chapter 1: [Hyperloop Showcase](https://github.com/fzingg/hyperloop-showcase) 
++ Chapter 2: [Hyperloop Showcase Template](https://github.com/fzingg/hyperloop-showcase-template) 
++ Chapter 3: [Hyperloop Showcase with HEROKU (Debug way)](https://github.com/fzingg/hyperloop-showcase-heroku) 
++ Chapter 4: [Hyperloop Showcase with HEROKU (Fast way)](https://github.com/fzingg/hyperloop-showcase-template-heroku) 
 
-For more information : [HyperLoop Web site](http://ruby-hyperloop.io/)
+For more information: [HyperLoop Web site](http://ruby-hyperloop.io/)
 
 ## General introduction
 
@@ -22,7 +22,7 @@ The Showcase application will look like this:
 
 ![Screen](https://cdn.rawgit.com/fzingg/hyperloop-showcase/85957e95/public/screen.png)
 
-You can have an Online preview of the final App here : [http://hyperloop-showcase.pixagency.com](http://hyperloop-showcase.pixagency.com)
+The complete app is demoed here: [http://hyperloop-showcase.pixagency.com](http://hyperloop-showcase.pixagency.com)
 
 ### Technologies highlighted in this Showcase application
 
